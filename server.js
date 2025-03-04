@@ -24,6 +24,17 @@ app.get('/api/steam/app/:appId', async (req, res) => {
   }
 });
 
+app.get('/api/steam/app/:appHeroLibrary', async (req, res) => {
+  try {
+    const { appId } = req.params;
+    const response = await axios.get(`https://cdn.akamai.steamstatic.com/steam/apps/${appId}/library_hero.jpg`);
+    res.json(response.data);
+  } catch (error) {
+    console.error('Error proxying Steam API:', error);
+    res.status(500).json({ error: 'Failed to fetch data from Steam API' });
+  }
+})
+
 // Add a simple test endpoint
 app.get('/api/test', (req, res) => {
   res.json({ message: 'Proxy server is working correctly!' });

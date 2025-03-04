@@ -5,6 +5,7 @@ import useSteamApp from '../hooks/useSteamApp';
 const SteamAppDetails = ({ appId }) => {
   const { loading, error, appData } = useSteamApp(appId);
 
+
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
   if (!appData) return <div>No data available</div>;
