@@ -36,9 +36,23 @@ chore: Regular code maintenance.[ You can also use emojis to represent commit ty
 
     10. Follow the commit convention defined by your team
 
+Example:
 
+git commit -m "Add user authentication middleware for API routes" -m "Implement JWT-based authentication system to protect private API endpoints from unauthorized access.
+
+The previous implementation lacked proper authentication checks, allowing any user to access sensitive data endpoints. This change:
+
+- Creates a new middleware function that verifies JWT tokens
+- Adds token validation on all /api/user/* routes
+- Implements proper error handling for expired or invalid tokens
+- Updates tests to include authentication scenarios
+
+This resolves issue #142 and follows our team's security requirements."
 
 -------------------------------------------------
+
+## JSDOC
+
 https://jsdoc.app
 
 
