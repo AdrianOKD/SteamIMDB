@@ -1,5 +1,7 @@
 ## Git Commit Message Template
 
+vip: 
+
 feat: The new feature you're adding to a particular application
 
 fix: A bug fix
