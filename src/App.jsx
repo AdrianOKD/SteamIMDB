@@ -11,7 +11,6 @@ function App() {
     <>
       <div>
         <h1>WELCOME TO OUR APP!
-
         </h1>
         <Car />
         <MyButton />
