@@ -1,6 +1,6 @@
 ## Git Commit Message Template
 
-vip: 
+wip: 
 
 feat: The new feature you're adding to a particular application
 

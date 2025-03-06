@@ -2,23 +2,25 @@ import { Logo } from "./Logo";
 import { NavLinks } from "./NavLinks";
 import { SearchBar } from "./SearchBar";
 import { UserLinks } from "./UserLinks";
-// import { Button } from "./Button";
+import { Button } from "../Button";
+import "./NavBar.css";
+import "./NavLinks.css";
 
-function NavBar() {
+export function NavBar() {
   return (
     <>
       <nav>
-        <div>
-          <div>
+        <div className="navbar">
+          <div className="navbar-left-container">
             <Logo />
             <NavLinks />
           </div>
-          <div>
+          <div className="navbar-middle-container">
             <SearchBar />
           </div>
-          <div>
+          <div className="navbar-right-container">
             <UserLinks />
-            {/* <Button /> */}
+            <Button />
           </div>
         </div>
       </nav>
@@ -26,4 +28,4 @@ function NavBar() {
   );
 }
 
-export default NavBar;
+

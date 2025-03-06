@@ -1,9 +1,13 @@
+import "./NavLinks.css"
+
 export function NavLinks() {
   return (
     <>
-      <span>SHOP </span>
-      <span>NEWS </span>
-      <span>COMMUNITY</span>
+      <div className="nav-links">
+          <span>SHOP </span>
+          <span>NEWS </span>
+          <span>COMMUNITY</span>
+      </div>
     </>
   );
 }
