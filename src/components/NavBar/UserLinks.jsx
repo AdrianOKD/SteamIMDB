@@ -5,7 +5,7 @@ export function UserLinks() {
     <>
       <div className="user-links">
         <span>Profile </span>
-        <span>Sign In</span>
+        <span>Sign in</span>
       </div>
     </>
   );
