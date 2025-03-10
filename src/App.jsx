@@ -1,10 +1,14 @@
 import "./App.css";
 import SteamAppDetails from "./components/SteamAppDetails.jsx";
-import { Hero } from "./components/Hero.jsx";
-import { NavBar } from "./components/NavBar/NavBar.jsx";
+import { Link, Outlet, Route, Routes,/* useNavigate, useParams */} from 'react-router';
+import {Hero} from  "./components/Hero.jsx";
 import { NavLinks } from "./components/NavBar/NavLinks.jsx";
 import { Footer } from "./components/Footer/Footer.jsx";
+import { FrontPage } from "./pages/FrontPage.jsx";
+import { GamePage } from "./pages/GamePage.jsx";
+import {NavBar} from "./components/NavBar/NavBar.jsx";
 // import { useState } from "react";
+
 
 function App() {
   // const [frontPage, setFrontPage] = useState(true);
@@ -13,32 +17,36 @@ function App() {
   // setFrontPage(false);
 
   // if (frontPage) {
+
   return (
     <>
-      <header>
-        <NavBar />
-      </header>
-      <main>
-        {/*Main section*/}
-        <SteamAppDetails appId="594570" />
-        <Hero appId="440" />
-      </main>
-      <footer>
-        <Footer />
-      </footer>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+        <Route index element={<FrontPage />}></Route>
+        <Route path="GamePage" element={<GamePage />}></Route>  
+        </Route>
+      </Routes> 
+
     </>
   );
-  // }
-
-  // return (
-  //   <>
-  //     <div>
-  //       <NavBar />
-  //       <SteamAppDetails appId="594570" />
-  //       <Hero appId="440" />
-  //     </div>
-  //   </>
-  // );
 }
 
+function Layout() 
+{
+  return <> 
+   <header>
+      <NavBar />
+    </header>
+    <main>
+      <Outlet/>
+      {/*Main section*/}
+      <SteamAppDetails appId="594570" />
+      <Hero appId="440" />
+    </main>
+    <footer>
+      <Footer />
+    </footer>
+  </>
+
+}
 export default App;
