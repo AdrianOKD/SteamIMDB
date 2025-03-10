@@ -1,7 +1,12 @@
-import { Link } from 'react-router';
+import { Link } from "react-router";
 
 export function Hero({ appId }) {
   // TODO: Implement useState
+
+  /* {is this a possible solution to rendering multiple gamecard links} */
+
+  /* <Link to={`/GamePage/${appId}`}> */
+
   return (
     <div>
       <Link to="/GamePage">

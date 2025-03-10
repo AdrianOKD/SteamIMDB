@@ -4,11 +4,11 @@ import { Hero } from "../components/Hero";
 export function FrontPage() {
   return (
     <>
-      <p>
-        front page
+      <div>
+        <p>front page</p>
         <SteamAppDetails appId="594570" />
         <Hero appId="440" />
-      </p>
+      </div>
     </>
   );
 }

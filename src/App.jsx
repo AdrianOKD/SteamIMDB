@@ -39,9 +39,6 @@ function Layout()
     </header>
     <main>
       <Outlet/>
-      {/*Main section*/}
-      <SteamAppDetails appId="594570" />
-      <Hero appId="440" />
     </main>
     <footer>
       <Footer />
