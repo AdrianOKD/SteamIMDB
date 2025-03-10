@@ -1,4 +1,9 @@
-/* a {
+#logo {
+  display: flex;
+    background-color: yellow;
+    height: fit-content;
+} 
 
-    
-} */
+img {
+
+}

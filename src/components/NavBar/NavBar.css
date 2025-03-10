@@ -1,24 +1,42 @@
 .navbar {
     display: flex;
     justify-content: space-between;
-    
     padding-left: 2rem;
     padding-right: 2rem;
-    padding-top: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    background-color: #242424;
+    /* border-bottom: 1px solid lightgray; */
+    border-bottom: none;
+    background-image: linear-gradient(to right, transparent, rgb(85, 85, 85) 5%, rgb(85, 85, 85) 95%, transparent);
+    background-position: bottom;
+    background-size: 100% 1px;
+    background-repeat: no-repeat;
+
+    align-items: center;
     /* flex-direction: column; */
 }
+
 
 .navbar-left-container, .navbar-middle-container, .navbar-right-container
  {
     display: flex;
 }
 .navbar-left-container {
-
+    width: 15%;
+    align-items: center;
+    justify-content: space-between;
 }
 .navbar-middle-container {
-
+    justify-content: space-between;
+    width: 30%;
+    align-items: center;
+    flex-direction: column;
 }
 
 .navbar-right-container {
-
+    width: 15%;
+    justify-content: space-between;
+    align-items: center;
 }
+

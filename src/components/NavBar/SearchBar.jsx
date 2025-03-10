@@ -4,7 +4,7 @@ export function SearchBar() {
   return (
     <>
       <div className="search-bar">
-        <input type="text" />
+        <input id="search-input" type="text" placeholder="Search Game..." />
         <button>search</button>
       </div>
     </>

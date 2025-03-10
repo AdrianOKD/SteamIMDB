@@ -1,7 +1,11 @@
 #root {
-  /* max-width: 1280px; */
+  /* The max-width property below enables resizing when the window changes. */
+  max-width: 100%;
   margin: 0 auto;
   padding: 0rem;
   text-align: center;
 }
 
+/* a {
+  background-color: blue;
+} */
