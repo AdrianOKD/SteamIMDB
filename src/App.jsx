@@ -7,6 +7,9 @@ import { Footer } from "./components/Footer/Footer.jsx";
 import { FrontPage } from "./pages/FrontPage.jsx";
 import { GamePage } from "./pages/GamePage.jsx";
 import {NavBar} from "./components/NavBar/NavBar.jsx";
+import { LinkPage } from "./pages/LinkPage.jsx";
+import { UserPage } from "./pages/UserPage.jsx";
+
 // import { useState } from "react";
 
 
@@ -24,6 +27,8 @@ function App() {
         <Route path="/" element={<Layout />}>
         <Route index element={<FrontPage />}></Route>
         <Route path="GamePage" element={<GamePage />}></Route>  
+        <Route path="LinkPage" element={<LinkPage />}></Route>
+        <Route path="UserPage" element={<UserPage />}></Route>
         </Route>
       </Routes> 
 
@@ -31,7 +36,7 @@ function App() {
   );
 }
 
-function Layout() 
+function Layout()  
 {
   return <> 
    <header>

@@ -10,8 +10,8 @@
 }
 
 .button.watchlist {
-    background-color: #093057;
     color: white;
+    margin-left: auto;
 }
 
 .button.search {

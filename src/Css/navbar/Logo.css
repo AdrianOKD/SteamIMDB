@@ -1,9 +1,6 @@
 #logo {
-  display: flex;
-    background-color: rgb(26, 32, 59);
+    width: 5rem;
+    padding-right: 2rem;
+    /* background-color: rgb(26, 32, 59); */
     height: fit-content;
-} 
-
-img {
-
 }
