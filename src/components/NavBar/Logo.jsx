@@ -1,4 +1,4 @@
-import "./Logo.css";
+import "/src/Css/navbar/Logo.css";
 import { Link } from "react-router";
 
 export function Logo() {

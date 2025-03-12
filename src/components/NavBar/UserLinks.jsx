@@ -1,4 +1,4 @@
-import "./UserLinks.css"
+import "/src/Css/navbar/UserLinks.css";
 
 export function UserLinks() {
   return (

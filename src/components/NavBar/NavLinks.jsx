@@ -1,4 +1,4 @@
-import "./NavLinks.css"
+import "/src/Css/navbar/NavLinks.css";
 
 export function NavLinks() {
   return (

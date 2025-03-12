@@ -3,8 +3,8 @@ import { NavLinks } from "./NavLinks";
 import { SearchBar } from "./SearchBar";
 import { UserLinks } from "./UserLinks";
 import { Button } from "../Button";
-import "./NavBar.css";
-import "./NavLinks.css";
+import "/src/Css/navbar/NavBar.css";
+
 
 export function NavBar() {
   return (

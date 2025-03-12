@@ -12,6 +12,8 @@
     background-position: bottom;
     background-size: 100% 1px;
     background-repeat: no-repeat;
+    
+
 
     align-items: center;
     /* flex-direction: column; */
@@ -20,22 +22,25 @@
 
 .navbar-left-container, .navbar-middle-container, .navbar-right-container
  {
+
     display: flex;
 }
 .navbar-left-container {
-    width: 15%;
-    align-items: center;
+    width: 20%;
     justify-content: space-between;
+    align-items: center;
+    
 }
 .navbar-middle-container {
-    justify-content: space-between;
     width: 30%;
+    justify-content: space-between;
     align-items: center;
     flex-direction: column;
+    
 }
 
 .navbar-right-container {
-    width: 15%;
+    width: 20%;
     justify-content: space-between;
     align-items: center;
 }
