@@ -7,6 +7,11 @@
   text-align: center;
 }
 
+header {
+  position: sticky;
+  top: 0;
+}
+
 /* a {
   background-color: blue;
 } */
