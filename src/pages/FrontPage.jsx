@@ -7,7 +7,9 @@ export function FrontPage() {
       <div>
         <p>front page</p>
         <SteamAppDetails appId="594570" />
-        <Hero appId="440" />
+        <div className="hero">
+        <Hero  appId="440" />
+        </div>
       </div>
     </>
   );
