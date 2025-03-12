@@ -1,6 +1,6 @@
 ## Git Commit Message Template
 
-wip: 
+wip: work in progress
 
 feat: The new feature you're adding to a particular application
 
