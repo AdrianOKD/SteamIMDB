@@ -1,13 +1,28 @@
 import "./Button.css";
-export function Button() {
+// export function Button() {
+//   return (
+//     <>
+//       <button>WatchList</button>
+//     </>
+//   );
+// }
+export function Button({
+  children,
+  className,
+  variant = "default",
+  size = "medium",
+  ...props
+}) {
   return (
-    <>
-      <button>WatchList</button>
-    </>
+    <button
+      className={`button ${variant} ${size} ${className || ""}`}
+      {...props}
+    >
+      {children || "Button"}
+    </button>
   );
 }
-
-// Looking at your code snippet and project structure, this is a good question about React component architecture. 
+// Looking at your code snippet and project structure, this is a good question about React component architecture.
 
 // Creating a reusable Button component can actually provide several benefits, even when you need different styling in different places:
 
@@ -22,16 +37,16 @@ export function Button() {
 // ```jsx
 // import "./Button.css";
 
-// export function Button({ 
-//   children, 
-//   className, 
-//   variant = "default", 
+// export function Button({
+//   children,
+//   className,
+//   variant = "default",
 //   size = "medium",
-//   ...props 
+//   ...props
 // }) {
 //   return (
-//     <button 
-//       className={`button ${variant} ${size} ${className || ""}`} 
+//     <button
+//       className={`button ${variant} ${size} ${className || ""}`}
 //       {...props}
 //     >
 //       {children || "Button"}
@@ -76,7 +91,6 @@ export function Button() {
 
 // Your project structure suggests this is a game-related app. For such projects, component reusability can significantly reduce maintenance overhead as your application grows.
 
-
 // This is a really good question that gets at the heart of component-based architecture in React. Let me walk through why creating a Button component often makes more sense than just using a raw HTML button with a className.
 
 // ### Encapsulation of Logic and Behavior
@@ -93,7 +107,7 @@ export function Button() {
 //     // Then call the original onClick handler
 //     if (onClick) onClick(e);
 //   };
-  
+
 //   return <button onClick={handleClick} {...props} />;
 // }
 // ```
@@ -103,10 +117,10 @@ export function Button() {
 // ```jsx
 // function Button({ disabled, ...props }) {
 //   return (
-//     <button 
+//     <button
 //       disabled={disabled}
 //       aria-disabled={disabled}
-//       {...props} 
+//       {...props}
 //     />
 //   );
 // }
@@ -135,14 +149,14 @@ export function Button() {
 // ```jsx
 // function Button({ variant = "default", ...props }) {
 //   const theme = useTheme(); // A hook that provides current theme
-  
+
 //   return (
-//     <button 
-//       style={{ 
+//     <button
+//       style={{
 //         backgroundColor: theme.colors[variant],
-//         color: theme.textColors[variant] 
+//         color: theme.textColors[variant]
 //       }}
-//       {...props} 
+//       {...props}
 //     />
 //   );
 // }
@@ -157,7 +171,7 @@ export function Button() {
 //     medium: { padding: "8px 16px", fontSize: "14px" },
 //     large: { padding: "12px 24px", fontSize: "16px" }
 //   };
-  
+
 //   return <button className={`btn-${variant}`} style={sizeMap[size]} {...props} />;
 // }
 // ```
@@ -185,15 +199,15 @@ export function Button() {
 // Looking at your specific case with the GamePage.jsx file, a good middle ground might be a Button component that accepts all standard button attributes while adding useful features:
 
 // ```jsx
-// function Button({ 
-//   className, 
+// function Button({
+//   className,
 //   children,
 //   variant = "default",
-//   ...props 
+//   ...props
 // }) {
 //   // Combine the base button class with any additional classes
 //   const buttonClass = `button button-${variant} ${className || ""}`.trim();
-  
+
 //   return (
 //     <button className={buttonClass} {...props}>
 //       {children}

@@ -1,0 +1,30 @@
+.button {
+    border-radius: 4px;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.button.default {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+.button.watchlist {
+    background-color: #0d3258;
+    color: white;
+}
+
+.button.small {
+    padding: 4px 8px;
+    font-size: 0.8rem;
+}
+
+.button.medium {
+    padding: 8px 16px;
+    font-size: 1rem;
+}
+
+.button.large {
+    padding: 12px 24px;
+    font-size: 1.2rem;
+}

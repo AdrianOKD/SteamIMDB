@@ -19,8 +19,7 @@ export function NavBar() {
             <SearchBar />
           </div>
           <div className="navbar-right-container">
-            <UserLinks />
-            <Button />
+            <UserLinks /> <Button variant="watchlist" size="small">Watchlist</Button>
           </div>
         </div>
       </nav>
