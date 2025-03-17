@@ -1,6 +1,6 @@
 ## Git Commit Message Template
 
-wip: 
+wip: work in progress
 
 feat: The new feature you're adding to a particular application
 
@@ -15,8 +15,6 @@ test: Everything related to testing
 docs: Everything related to documentation
 
 chore: Regular code maintenance.[ You can also use emojis to represent commit types]
-
-
 
     1. Separate the subject from the body with a blank line
 
@@ -45,35 +43,44 @@ git commit -m "Add user authentication middleware for API routes" -m "Implement 
 The previous implementation lacked proper authentication checks, allowing any user to access sensitive data endpoints. This change:
 
 - Creates a new middleware function that verifies JWT tokens
-- Adds token validation on all /api/user/* routes
+- Adds token validation on all /api/user/\* routes
 - Implements proper error handling for expired or invalid tokens
 - Updates tests to include authentication scenarios
 
 This resolves issue #142 and follows our team's security requirements."
 
--------------------------------------------------
+---
 
 ## JSDOC
 
 https://jsdoc.app
 
-
- For example, if the function is a constructor for a class, you can indicate this by adding a @constructor tag.
+For example, if the function is a constructor for a class, you can indicate this by adding a @constructor tag.
 
 Use a JSDoc tag to describe your code
-/**
- * Represents a book.
- * @constructor
- */
-function Book(title, author) {
-}
+/\*\*
+
+- Represents a book.
+- @constructor
+  \*/
+  function Book(title, author) {
+  }
 
 Adding more information with tags
-/**
- * Represents a book.
- * @constructor
- * @param {string} title - The title of the book.
- * @param {string} author - The author of the book.
- */
-function Book(title, author) {
-}
+/\*\*
+
+- Represents a book.
+- @constructor
+- @param {string} title - The title of the book.
+- @param {string} author - The author of the book.
+  \*/
+  function Book(title, author) {
+  }
+
+<Grid container>
+    {/* Rendera dynamiskt */}
+    <Grid item key={{/*game.id?*/}}>
+    <GameCard 
+    gameImage={game.image}/>
+    </Grid>
+</Grid>

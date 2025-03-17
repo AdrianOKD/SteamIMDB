@@ -1,0 +1,13 @@
+.gg-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-grid {
+  background-color: rgba(87, 76, 76, 0.205);
+  box-shadow: 0 0 1.1rem rgba(102, 149, 187, 0.5);
+  border-radius: 1.4rem;
+  width: 80%;
+  padding: 2rem;
+}

@@ -1,9 +1,15 @@
 #root {
   /* The max-width property below enables resizing when the window changes. */
-  max-width: 100%;
+  /* max-width: 100%; */
+  width: 100vw;
   margin: 0 auto;
   padding: 0rem;
   text-align: center;
+}
+
+header {
+  position: sticky;
+  top: 0;
 }
 
 /* a {

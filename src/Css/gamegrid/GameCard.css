@@ -1,0 +1,6 @@
+.game-card {
+  /* border-top: solid 1px rgb(36, 35, 35);
+  border-left: solid 1px rgb(36, 35, 35); */
+  overflow: hidden;
+  border-radius: 0.2rem;
+}

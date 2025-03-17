@@ -1,0 +1,39 @@
+.user-links {
+  display: flex;
+  /* width: 50%; */
+  /* justify-content: space-around; */
+  /* overflow: hidden; */
+  width: 90%;
+  justify-content: end;
+  padding-right: 5.7rem;
+}
+
+.user-link {
+  font-family: fantasy;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 700;
+  margin-left: 3.5rem;
+}
+
+.user-link.default {
+  color: #f5f5f5;
+}
+
+.user-link.dd {
+  background-color: #093057;
+  color: white;
+}
+
+.user-link.search {
+  background-color: #093057;
+  color: white;
+}
+s
+.user-link.small {
+  font-size: 0.8rem;
+}
+
+.user-link.medium {
+  font-size: 1rem;
+}

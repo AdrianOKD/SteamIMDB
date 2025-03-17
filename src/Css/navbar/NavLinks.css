@@ -1,0 +1,28 @@
+.link {
+    font-family: fantasy;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.link.default {
+    color: #f5f5f5;
+}
+
+.link.dd {
+    background-color: #093057;
+    color: white;
+}
+
+.link.search {
+    background-color: #093057;
+    color: white;
+}
+
+.link.small {
+    font-size: 0.8rem;
+}
+
+.link.medium {
+    font-size: 1rem;
+}
