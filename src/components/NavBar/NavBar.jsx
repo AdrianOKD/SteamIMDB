@@ -12,7 +12,7 @@ export function NavBar() {
       <nav>
         <div className="navbar">
           <div className="navbar-left-container">
-            <Logo />
+            < Logo />
             <NavLinks to="/LinkPage" variant="default" size="medium">Store</NavLinks >
             <NavLinks to="/LinkPage" variant="default" size="medium">News stand</NavLinks>
             <NavLinks to="/LinkPage" variant="default" size="medium">Community</NavLinks>
