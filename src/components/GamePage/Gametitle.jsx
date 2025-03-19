@@ -5,4 +5,4 @@ const GameTitle = () => {
   )
 }
 
-export default Gametitle
+export default GameTitle
