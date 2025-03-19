@@ -38,41 +38,6 @@ node server.js
 ```
 This will start your API server, typically at `http://localhost:3001`.
 
-## API Integration
-
-This project uses a `server.js` file to handle API calls with axios. The server acts as a middleware between your React application and external APIs.
-
-### How it works:
-- Frontend components make requests to endpoints defined in `server.js`
-- The server uses axios to forward these requests to external APIs
-- API responses are processed and returned to the frontend
-
-### Example usage in components:
-```javascript
-import axios from 'axios';
-
-// Fetch data from your server.js API
-const fetchData = async () => {
-  try {
-    const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/data`);
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching data:', error);
-  }
-};
-```
-
-## Building for Production
-
-```bash
-npm run build
-```
-
-To run the production build:
-```bash
-npm run preview
-node server.js
-```
 
 ## Git Commit Message Template
 
