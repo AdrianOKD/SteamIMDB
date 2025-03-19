@@ -8,32 +8,36 @@ const useGames = (limit = 100) => {
   const [games, setGames] = useState([]);
   const setAllGames = useGameStore((state) => state.setAllGames);
 
-  useEffect(() => {
-    const fetchGames = async () => {
-      try {
-        console.log("Starting IGDB API request...");
-        setLoading(true);
+  useEffect(
+    () => {
+      const fetchGames = async () => {
+        try {
+          console.log("Starting IGDB API request...");
+          setLoading(true);
 
-        // This would call your backend endpoint that handles IGDB authentication
-        const response = await axios.get(
-          `http://localhost:3001/api/games?limit=${limit}`
-        );
+          // This would call your backend endpoint that handles IGDB authentication
+          const response = await axios.get(
+            `http://localhost:3001/api/games?limit=${limit}`
+          );
 
-        // Assuming your backend returns the shaped data directly
-        const fetchedGames = response.data;
-        setGames(fetchedGames);
-        setAllGames(fetchedGames);
-        setError(null);
-      } catch (err) {
-        setError(err.message);
-        setGames([]);
-      } finally {
-        setLoading(false);
-      }
-    };
+          // Assuming your backend returns the shaped data directly
+          const fetchedGames = response.data;
+          setGames(fetchedGames);
+          setAllGames(fetchedGames);
+          setError(null);
+        } catch (err) {
+          setError(err.message);
+          setGames([]);
+        } finally {
+          setLoading(false);
+        }
+      };
 
-    fetchGames();
-  }, [limit], [setAllGames]);
+      fetchGames();
+    },
+    [limit],
+    [setAllGames]
+  );
 
   return { games, loading, error };
 };

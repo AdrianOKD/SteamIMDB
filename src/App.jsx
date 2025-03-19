@@ -14,23 +14,21 @@ import { useEffect } from "react";
 import useGames from "./hooks/useGames";
 // import { useParams } from "react-router";
 
+function App() {
+  useGames(40);
+  const allGames = useGameStore((state) => state.allGames);
+  const selectGameImages = useGameStore((state) => state.selectGameImages);
+  const selectedGameImages = useGameStore((state) => state.selectedGameImages);
+  console.log(allGames);
 
-function App() {  
+  // Move the selectGameImages call inside a useEffect to prevent infinite loop
+  useEffect(() => {
+    if (allGames.length > 0) {
+      selectGameImages(allGames);
+    }
+  }, [allGames, selectGameImages]);
 
-useGames(40);
-const allGames = useGameStore((state) => state.allGames);
-const selectGameImages = useGameStore((state) => state.selectGameImages);
-const selectedGameImages = useGameStore((state) => state.selectedGameImages);
-console.log(allGames)
-
-// Move the selectGameImages call inside a useEffect to prevent infinite loop
-useEffect(() => {
-  if (allGames.length > 0) {
-    selectGameImages(allGames);
-  }
-}, [allGames, selectGameImages]);
-
-console.log(selectedGameImages);
+  console.log(selectedGameImages);
 
   // console.log("All game IDs:", allGameIds.length);
   // console.log(selectedGameIds);

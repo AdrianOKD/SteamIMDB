@@ -11,20 +11,16 @@ import "/src/Css/navbar/NavLinks.css";
 //       </div>
 //     </>
 //   );
-  export function NavLinks({
-    children,
-    className,
-    variant = "default",
-    size = "medium",
-    ...props
-  }) {
-    return (
-      <Link
-        className={`link ${variant} ${size} ${className || ""}`}
-        {...props}
-      >
-        {children ||  "potato"}
-      </Link>
-    );
-  }
-
+export function NavLinks({
+  children,
+  className,
+  variant = "default",
+  size = "medium",
+  ...props
+}) {
+  return (
+    <Link className={`link ${variant} ${size} ${className || ""}`} {...props}>
+      {children || "potato"}
+    </Link>
+  );
+}

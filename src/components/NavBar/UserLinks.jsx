@@ -1,8 +1,6 @@
 import "/src/Css/navbar/UserLinks.css";
 import { Link } from "react-router";
 
-
-
 export function UserLinks({
   children,
   className,
@@ -15,7 +13,7 @@ export function UserLinks({
       className={`user-link ${variant} ${size} ${className || ""}`}
       {...props}
     >
-      {children ||  "potato"}
+      {children || "potato"}
     </Link>
   );
 }

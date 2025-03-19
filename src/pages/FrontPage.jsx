@@ -1,6 +1,6 @@
 import SteamAppDetails from "../components/SteamAppDetails";
 import { Hero } from "../components/Hero";
-import { GameGrid } from "../components/GameGrid/GameGrid";
+import { GameGrid } from "../components/FrontPage/GameGrid";
 
 export function FrontPage() {
   return (

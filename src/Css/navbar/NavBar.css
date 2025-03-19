@@ -18,23 +18,26 @@
 }
 
 
-.navbar-left-container, .navbar-middle-container, .navbar-right-container
- {
+.navbar-left-container,
+.navbar-middle-container,
+.navbar-right-container {
 
     display: flex;
 }
+
 .navbar-left-container {
     width: 25%;
     justify-content: space-between;
     align-items: center;
-    
+
 }
+
 .navbar-middle-container {
     width: 30%;
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
-    
+
 }
 
 .navbar-right-container {
@@ -43,4 +46,3 @@
     align-items: center;
 
 }
-

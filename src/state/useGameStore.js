@@ -9,7 +9,7 @@ const useGameStore = create(
 
     // Store randomly selected game IDs (100 games)
     selectedGameIds: [],
-    
+
     selectedGameImages: [],
 
     // Store currently displayed games

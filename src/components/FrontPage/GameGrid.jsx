@@ -1,7 +1,7 @@
 import { Container, Paper, Grid2, Box } from "@mui/material";
 import useGameStore from "../../state/useGameStore";
 import logo from "/src/components/assets/company-logo.png";
-import { GameCard } from "./Gamecard";
+import { GameCard } from "./GameCard";
 import "/src/Css/gamegrid/GameGrid.css";
 
 export function GameGrid() {
