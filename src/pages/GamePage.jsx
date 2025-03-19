@@ -1,6 +1,7 @@
 import { useParams } from "react-router";
 import useGameStore from "../state/useGameStore";
 import { useEffect } from "react";
+import GameMedia from "../components/GamePage/GameMedia";
 
 export function GamePage() {
   const { id } = useParams();
@@ -16,7 +17,7 @@ export function GamePage() {
       <div className="GamePage">
         <main className="game-container">
         <div>GameTitle</div>
-        <div>GameMedia</div>
+        <GameMedia />
         <div className="right-side-content">
           <div>Header/banner image</div>
           <div>Details List</div>
