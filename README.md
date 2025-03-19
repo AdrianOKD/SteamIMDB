@@ -21,7 +21,8 @@ npm install
 
 3. Create a `.env` file in the root directory:
 ```
-VITE_API_URL=http://localhost:3001
+TWITCH_CLIENT_ID=Client ID
+TWITCH_CLIENT_SECRET=Client Secret
 ```
 
 ## Running the Application
