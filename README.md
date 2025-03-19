@@ -1,3 +1,79 @@
+# Installation
+
+## Prerequisites
+
+Before you begin, make sure you have the following installed:
+- [Node.js](https://nodejs.org/) (v18.0.0 or higher)
+- npm (v8.0.0 or higher)
+
+## Setting Up the Project
+
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/your-project-name.git
+cd your-project-name
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Create a `.env` file in the root directory:
+```
+VITE_API_URL=http://localhost:3001
+```
+
+## Running the Application
+
+1. Start the development server:
+```bash
+npm run dev
+```
+This will start the Vite development server, typically at `http://localhost:5173`.
+
+2. Start the backend API server:
+```bash
+node server.js
+```
+This will start your API server, typically at `http://localhost:3001`.
+
+## API Integration
+
+This project uses a `server.js` file to handle API calls with axios. The server acts as a middleware between your React application and external APIs.
+
+### How it works:
+- Frontend components make requests to endpoints defined in `server.js`
+- The server uses axios to forward these requests to external APIs
+- API responses are processed and returned to the frontend
+
+### Example usage in components:
+```javascript
+import axios from 'axios';
+
+// Fetch data from your server.js API
+const fetchData = async () => {
+  try {
+    const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/data`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+};
+```
+
+## Building for Production
+
+```bash
+npm run build
+```
+
+To run the production build:
+```bash
+npm run preview
+node server.js
+```
+
 ## Git Commit Message Template
 
 wip: work in progress
