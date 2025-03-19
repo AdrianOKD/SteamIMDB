@@ -1,6 +1,6 @@
 import SteamAppDetails from "../components/SteamAppDetails";
 import { Hero } from "../components/Hero";
-import { GameGrid } from "../components/GameGrid/GameGrid";
+import { GameGrid } from "../components/FrontPage/GameGrid";
 
 export function FrontPage() {
   return (
@@ -8,11 +8,6 @@ export function FrontPage() {
       <div className="front-page">
         <h1>Games</h1>
         <GameGrid />
-        {/* 
-        <div className="hero">
-          <Hero appId="440" />
-        </div> */}
-        <SteamAppDetails appId="594570" />
       </div>
     </>
   );

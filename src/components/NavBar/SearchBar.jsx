@@ -1,9 +1,9 @@
-import "/src/Css/navbar/SearchBar.css"
+import "/src/Css/navbar/SearchBar.css";
 
 export function SearchBar() {
   return (
     <>
-        <input id="search-input" type="text" placeholder="Search Game..." />
+      <input id="search-input" type="text" placeholder="Search Game..." />
     </>
   );
 }

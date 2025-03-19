@@ -12,34 +12,33 @@ import { UserPage } from "./pages/UserPage.jsx";
 import useGameStore from "./state/useGameStore.js";
 import { useEffect } from "react";
 import useGames from "./hooks/useGames";
+// import { useParams } from "react-router";
 
 function App() {
-  // Use the games hook to fetch data
-  const { games, loading, error } = useGames();
+  useGames(40);
+  const allGames = useGameStore((state) => state.allGames);
+  const selectGameImages = useGameStore((state) => state.selectGameImages);
+  const selectedGameImages = useGameStore((state) => state.selectedGameImages);
+  console.log(allGames);
 
-  // Access the selectRandomGames function from the store
-  const selectRandomGames = useGameStore((state) => state.selectRandomGames);
-
-  // After games are loaded, select random games
+  // Move the selectGameImages call inside a useEffect to prevent infinite loop
   useEffect(() => {
-    if (games.length > 0) {
-      selectRandomGames();
+    if (allGames.length > 0) {
+      selectGameImages(allGames);
     }
-  }, [games, selectRandomGames]);
+  }, [allGames, selectGameImages]);
 
-  // For debugging
-  const allGameIds = useGameStore((state) => state.allGameIds);
-  const selectedGameIds = useGameStore((state) => state.selectedGameIds);
+  console.log(selectedGameImages);
 
   // console.log("All game IDs:", allGameIds.length);
-  console.log(selectedGameIds);
+  // console.log(selectedGameIds);
 
   return (
     <>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<FrontPage />}></Route>
-          <Route path="GamePage" element={<GamePage />}></Route>
+          <Route path="GamePage/:id" element={<GamePage />}></Route>
           <Route path="LinkPage" element={<LinkPage />}></Route>
           <Route path="UserPage" element={<UserPage />}></Route>
         </Route>
