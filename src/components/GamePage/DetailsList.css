@@ -1,0 +1,5 @@
+.DetailsList {
+    display: flex;
+    flex-direction: column;
+
+}

@@ -1,6 +1,8 @@
 import { useParams } from "react-router";
 import useGameStore from "../state/useGameStore";
 import { useEffect } from "react";
+import { GameDetailsList } from "../components/GamePage/GameDetailsList";
+// import {useGameDetails} from "../hooks/useGameDetails";
 
 export function GamePage() {
   const { id } = useParams();
@@ -9,7 +11,7 @@ export function GamePage() {
   // const game = ;
   useEffect(() => {
     selectGame(games, id);
-  }, [id, games]);
+  }, [id, games, selectGame]);
   const selectedGame = useGameStore((state) => state.selectedGame);
   return (
     <>
@@ -19,7 +21,7 @@ export function GamePage() {
         <div>GameMedia</div>
         <div className="right-side-content">
           <div>Header/banner image</div>
-          <div>Details List</div>
+          <GameDetailsList selectedGame={selectedGame} />
           <div>Tags</div>
           <div>ActionButtons</div>
         </div>
@@ -28,7 +30,6 @@ export function GamePage() {
           <div>More About this Game (Detailed Description)</div>
           <div>System Requirements</div>
         </div>
-
         <p>{selectedGame.id}</p>
 
         </main>
