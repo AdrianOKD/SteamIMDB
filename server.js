@@ -83,10 +83,11 @@ app.get("/api/games", async (req, res) => {
       },
       // This query gets games with covers, limits results, and sorts by popularity
       data: `fields name,cover.url,summary,storyline,rating,first_release_date,genres.name,platforms.name,screenshots.url,age_ratings.*,type,involved_companies.*,involved_companies.company.*, involved_companies.company.name,involved_companies.company.logo,involved_companies.company.slug; 
-             limit ${limit}; 
-             where cover != null & category = 0 & storyline != null & involved_companies.company.name != null; 
-             sort rating desc;`,
-    });
+      limit ${limit}; 
+      where cover != null & category = 0 & storyline != null; 
+      sort rating desc;`,
+});
+   
     console.log(`📣 IGDB API response received: ${response.data.length} games`);
     res.json(response.data);
   } catch (error) {
