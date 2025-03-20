@@ -77,9 +77,9 @@ app.get("/api/games", async (req, res) => {
         'Authorization': `Bearer ${token}`
       },
       // This query gets games with covers, limits results, and sorts by popularity
-      data: `fields name,cover.url,summary,rating,first_release_date,genres.name,platforms.name,screenshots.url,total_rating,storyline,age_ratings,type,involved_companies.*,involved_companies.company.*; 
+      data: `fields name,cover.url,summary,rating,first_release_date,genres.name,platforms.name,screenshots.url,total_rating,storyline,age_ratings.*,type,involved_companies.*,involved_companies.company.*; 
+             where cover != null & category = 0 & involved_companies.company.name != null; 
              limit ${limit}; 
-             where cover != null & category = 0 & involved_companies != null; 
              sort rating desc;`
     });
     
@@ -108,7 +108,7 @@ app.get("/api/games/:id", async (req, res) => {
         'Client-ID': TWITCH_CLIENT_ID,
         'Authorization': `Bearer ${token}`
       },
-      data: `fields name,cover.url,summary,storyline,rating,first_release_date,genres.name,platforms.name,screenshots.url,videos.video_id,similar_games.name,similar_games.cover.url;
+      data: `fields name,cover.url,summary,storyline,rating,first_release_date,genres.name,platforms.name,screenshots.url,videos.video_id,similar_games.name,similar_games.cover.url, game_types.type;
              where id = ${id};`
     });
     

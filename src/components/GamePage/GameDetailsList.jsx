@@ -7,7 +7,6 @@ import "./DetailsList.css";
 
 export function GameDetailsList({ selectedGame }) {
   useEffect(() => {
-    // This will show you exactly what data you're working with
     console.log("Selected Game:", selectedGame);
   }, [selectedGame]);
 
@@ -18,13 +17,13 @@ export function GameDetailsList({ selectedGame }) {
   const genre =
     selectedGame.genres && selectedGame.genres.length > 0
       ? selectedGame.genres[0].name
-      : "Unknown";
+      : "Unknown Genre ";
 
   const rating = selectedGame.rating;
 
   const releaseDate = selectedGame.first_release_date
     ? new Date(selectedGame.first_release_date * 1000).toLocaleDateString()
-    : "today";
+    : "Unknown Release Date";
 
   //   const {
   //     developer = "Developer",
@@ -47,10 +46,14 @@ export function GameDetailsList({ selectedGame }) {
 
   //   const ageRating = selectedGame.age_rating?.find()
 
-  const ageRating =
-    selectedGame.age_ratings && selectedGame.age_ratings.length > 0
-      ? getReadableAgeRating(selectedGame.age_ratings[0])
-      : "Not rated";
+  const ageRating = ageRatings(selectedGame);
+  function ageRatings(selectedGame) {
+    if (!selectedGame.age_ratings || !selectedGame.age_ratings === undefined) {
+      return (selectedGame.age_ratings?.[0]);
+    } else {
+      return "Unknown age rating";
+    }
+  }
 
   //   return (
   //     <div className="DetailsList">
@@ -62,31 +65,37 @@ export function GameDetailsList({ selectedGame }) {
   //       <div>Release Date - today</div>
   //     </div>
   //   );
+  const publisher = publisherName(selectedGame);
+  function publisherName(selectedGame) {
+    if (!selectedGame.publisher || selectedGame.publisher.lenght === 0)
+      return "Unkown publisher";
+  }
 
   const developer = developerName(selectedGame);
+  function developerName() {
+    if (
+      !selectedGame.involved_companies ||
+      selectedGame.involved_companies.length === 0
+    ) {
+      return "Unknown developer";
+    } else {
+      return;
+    }
+  }
 
   return (
     <div className="DetailsList">
-      <span className="detail-developer"> Developer {developer} </span>
+      <span className="detail-developer"> {developer} </span>
       <span>----</span>
-      <span className="detail-publisher"> Publisher </span>
+      <span className="detail-publisher"> {publisher} </span>
       <span>----</span>
-      <span className="detail-age"> Age- {ageRating} </span>
+      <span className="detail-age"> Age - {ageRating} </span>
       <span>----</span>
-      <span className="detail-rating"> {rating} </span>
+      <span className="detail-rating"> Rating - {rating} </span>
       <span>----</span>
       <span className="detail-genre"> Genre - {genre} </span>
       <span>----</span>
       <span className="detail-release"> Release - {releaseDate} </span>
     </div>
   );
-}
-
-function developerName() {
-  if (
-    !selectedGame.involved_companies ||
-    selectedGame.involved_companies.length === 0
-  ) {
-    return "Unknown";
-  }
 }
