@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "./DetailsList.css";
+import "/../Css/gamepage/DetailsList.css";
 
 /**   GameDetailsList Component
  * This component displays a list of the selected games metadata.
