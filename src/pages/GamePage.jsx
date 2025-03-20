@@ -7,6 +7,7 @@ import "/src/Css/gamepage/GameTitle.css";
 import "/src/Css/gamepage/GameContainer.css";
 import "./GamePage.css";
 import DetailedDescription from "../components/GamePage/DetailedDescription";
+import { GamePageButton } from "../components/GamePage/Buttons";
 
 export function GamePage() {
   const { id } = useParams();
@@ -26,7 +27,7 @@ export function GamePage() {
             <div>Header/banner image</div>
             <div><GameDetailsList selectedGame={selectedGame} /></div>
             <div>Tags</div>
-            <div>ActionButtons</div>
+            <div><GamePageButton variant="gamepage" size="small">Add to Wishlist</GamePageButton> <GamePageButton variant="gamepage" size="small">Follow</GamePageButton></div>
           </div>
           <div className="game-details">
             <GameDescription />
