@@ -1,0 +1,15 @@
+.storyline-container.gameystoryline {
+  margin-bottom: 1rem;
+  padding-left: 2rem;
+  text-align: left;
+}
+
+.storyline-header {
+  cursor: pointer;
+}
+
+.chevron-icon {
+  color: #aaa;
+  position: relative;
+  top: 3px;
+}
