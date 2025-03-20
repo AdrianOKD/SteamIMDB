@@ -5,7 +5,7 @@ import "./DetailsList.css";
  * This component displays a list of the selected games metadata.
  * It extracts and formats information such as developer, publisher,
  *  age rating, review score and release date.
- * 
+ *
  * @param {Object} selectedGame - Containing the games metadata to display.
  * @returns {JSX.Elements} A formatted list of game details.
  */
@@ -26,11 +26,10 @@ export function GameDetailsList({ selectedGame }) {
   const ageRating = getAgeRatings(selectedGame);
   const publisher = getPublisherName(selectedGame);
 
-
   /**
-   * 
+   *
    * @param {*} selectedGame - Selected game object.
-   * @returns {string}  Name of the first genre or "Unkown" if not available 
+   * @returns {string}  Name of the first genre or "Unkown" if not available
    */
   function getGenre(selectedGame) {
     if (!selectedGame.genres && !selectedGame.genres.length > 0) {
@@ -40,11 +39,11 @@ export function GameDetailsList({ selectedGame }) {
   }
 
   /**
- * collects and formats the game's rating to 2 decimals. 
- * 
- * @param {*} selectedGame 
- * @returns {string|number} Formatted rating or "Unknown" if not available.
- */
+   * collects and formats the game's rating to 2 decimals.
+   *
+   * @param {*} selectedGame
+   * @returns {string|number} Formatted rating or "Unknown" if not available.
+   */
   function getRating(selectedGame) {
     if (!selectedGame.rating) {
       return "Unknown";
@@ -53,7 +52,7 @@ export function GameDetailsList({ selectedGame }) {
   }
   /**
    * Converts the timestamp to a readable date format
-   * @param {*} selectedGame 
+   * @param {*} selectedGame
    * @returns {string}  returns a formatted date from selected game or "Unknown" if not found.
    */
 
@@ -67,7 +66,7 @@ export function GameDetailsList({ selectedGame }) {
   }
   /**
    * Extracts the age rating information
-   * @param {*} selectedGame 
+   * @param {*} selectedGame
    * @returns {string} Age rating or "Unknown".
    */
 
@@ -79,7 +78,7 @@ export function GameDetailsList({ selectedGame }) {
   }
   /**
    * Extracts the publishers name for display.
-   * @param {*} selectedGame 
+   * @param {*} selectedGame
    * @returns {string} Publishers name or "Unknown" if not available.
    */
 
@@ -92,7 +91,7 @@ export function GameDetailsList({ selectedGame }) {
 
   /**
    * Extracts the developers name for display.
-   * @param {*} selectedGame 
+   * @param {*} selectedGame
    * @returns {string} Developer name or "Unknown" if not available
    */
 
