@@ -1,3 +1,45 @@
+# Installation
+
+## Prerequisites
+
+Before you begin, make sure you have the following installed:
+- [Node.js](https://nodejs.org/) (v18.0.0 or higher)
+- npm (v8.0.0 or higher)
+
+## Setting Up the Project
+
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/your-project-name.git
+cd your-project-name
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Create a `.env` file in the root directory:
+```
+TWITCH_CLIENT_ID=Client ID
+TWITCH_CLIENT_SECRET=Client Secret
+```
+
+## Running the Application
+
+1. Start the development server:
+```bash
+npm run dev
+```
+This will start the Vite development server, typically at `http://localhost:5173`.
+
+2. Start the backend API server:
+```bash
+node server.js
+```
+This will start your API server, typically at `http://localhost:3001`.
+
+
 ## Git Commit Message Template
 
 wip: work in progress
