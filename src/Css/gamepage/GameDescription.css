@@ -1,0 +1,28 @@
+.game-description {
+  display: flex;
+  background-color: #242424;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  min-height: 12rem;
+  width: 70rem;
+  text-align: left;
+  margin: 0 auto;
+  color: white;
+  background-image: linear-gradient(
+      to right,
+      transparent,
+      rgb(85, 85, 85) 5%,
+      rgb(85, 85, 85) 95%,
+      transparent
+    ),
+    linear-gradient(
+      to right,
+      transparent,
+      rgb(85, 85, 85) 5%,
+      rgb(85, 85, 85) 95%,
+      transparent
+    );
+  background-position: top, bottom;
+  background-size: 100% 1px, 100% 1px;
+  background-repeat: no-repeat, no-repeat;
+}
