@@ -5,12 +5,12 @@ import { GameDescription } from "../components/GamePage/GameDescription";
 import "/src/Css/gamepage/GameTitle.css";
 import "/src/Css/gamepage/GameContainer.css";
 import "./GamePage.css";
+import DetailedDescription from "../components/GamePage/DetailedDescription";
 
 export function GamePage() {
   const { id } = useParams();
   const games = useGameStore((state) => state.allGames);
   const selectGame = useGameStore((state) => state.selectGame);
-  // const game = ;
   useEffect(() => {
     selectGame(games, id);
   }, [id, games]);
@@ -29,10 +29,9 @@ export function GamePage() {
           </div>
           <div className="game-details">
             <GameDescription />
-            <div>More About this Game (Detailed Description)</div>
+            <DetailedDescription />
             <div>System Requirements</div>
           </div>
-
           <p>{selectedGame.id}</p>
         </section>
       </div>
