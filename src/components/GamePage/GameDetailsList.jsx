@@ -32,7 +32,7 @@ export function GameDetailsList({ selectedGame }) {
    * @returns {string}  Name of the first genre or "Unkown" if not available
    */
   function getGenre(selectedGame) {
-    if (!selectedGame.genres && !selectedGame.genres.length > 0) {
+    if (!selectedGame.genres || !selectedGame.genres.length > 0) {
       return "Unknown";
     }
     return selectedGame.genres[0].name;
