@@ -86,8 +86,8 @@ app.get("/api/games", async (req, res) => {
       limit ${limit}; 
       where cover != null & category = 0 & storyline != null; 
       sort rating desc;`,
-});
-   
+    });
+
     console.log(`📣 IGDB API response received: ${response.data.length} games`);
     res.json(response.data);
   } catch (error) {

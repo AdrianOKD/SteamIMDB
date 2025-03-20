@@ -41,8 +41,9 @@
 
 .button.gamepage {
     flex-direction: row;
+    margin-right: 40rem;
     background-color: rgb(77, 82, 86);
     color: rgb(238, 232, 232);
-    margin-right: 80%;
+    display: inline-block;
 
 }
