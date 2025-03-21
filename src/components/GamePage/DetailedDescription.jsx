@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaChevronRight, FaChevronDown } from "react-icons/fa";
 import useGameStore from "../../state/useGameStore";
-import "../../Css/DetailedDescription.css";
+import "../../Css/gamepage/DetailedDescription.css";
 
 const DetailedDescription = () => {
   const selectedGame = useGameStore((state) => state.selectedGame);

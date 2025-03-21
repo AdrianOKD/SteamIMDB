@@ -82,7 +82,7 @@ app.get("/api/games", async (req, res) => {
         Authorization: `Bearer ${token}`,
       },
       // This query gets games with covers, limits results, and sorts by popularity
-      data: `fields name,cover.url,summary,storyline,rating,first_release_date,genres.name,platforms.name,screenshots.url,age_ratings.*,type,involved_companies.*,involved_companies.company.*, involved_companies.company.name,involved_companies.company.logo,involved_companies.company.slug; 
+      data: `fields name,cover.url,summary,storyline,rating,first_release_date,genres.name,platforms.name,screenshots.url,age_ratings.type,themes.name,keywords.name,game_modes.name; 
       limit ${limit}; 
       where cover != null & category = 0 & storyline != null; 
       sort rating desc;`,
