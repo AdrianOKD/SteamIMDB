@@ -29,7 +29,6 @@ app.use(
   })
 );
 
-
 // Get Twitch access token for IGDB
 async function getTwitchToken() {
   // Only get a new token if we don't have one or it's expired
@@ -83,7 +82,7 @@ app.get("/api/games", async (req, res) => {
         Authorization: `Bearer ${token}`,
       },
       // This query gets games with covers, limits results, and sorts by popularity
-      data: `fields name,cover.url,summary,storyline,rating,first_release_date,genres.name,platforms.name,screenshots.url,age_ratings.type,themes.name,keywords.name,game_modes.name; 
+      data: `fields name,cover.url,summary,storyline,rating,first_release_date,genres.name,platforms.name,screenshots.url,age_ratings.type,themes.name,keywords.name,game_modes.name,involved_companies; 
       limit ${limit}; 
       where cover != null & category = 0 & storyline != null; 
       sort rating desc;`,
@@ -128,6 +127,71 @@ app.get("/api/games/:id", async (req, res) => {
     res.status(500).json({ error: "Failed to fetch game details" });
   }
 });
+
+// Endpoint to fetch involved companies
+app.get("/api/involved-companies", async (req, res) => {
+  console.log("📣 Request received for /api/involved-companies");
+  try {
+    const token = await getTwitchToken();
+
+    const response = await axios({
+      url: "https://api.igdb.com/v4/involved_companies",
+      method: "POST",
+      headers: {
+        "Client-ID": TWITCH_CLIENT_ID,
+        Authorization: `Bearer ${token}`,
+      },
+
+      data: `fields id,company,developer,publisher,game;`,
+    });
+
+    console.log(
+      `IGDB API response received: ${response.data.length} involved companies`
+    );
+    res.json(response.data);
+  } catch (error) {
+    console.error(" Error fetching involved companies:", error.message);
+    if (error.response) {
+      console.error("Response status:", error.response.status);
+      console.error("Response data:", error.response.data);
+    }
+    res
+      .status(500)
+      .json({ error: "Failed to fetch involved companies from IGDB" });
+  }
+});
+
+// Endpoint to fetch companies
+app.get("/api/companies", async (req, res) => {
+  console.log("Request received for /api/companies");
+  try {
+    const token = await getTwitchToken();
+
+    const response = await axios({
+      url: "https://api.igdb.com/v4/companies",
+      method: "POST",
+      headers: {
+        "Client-ID": TWITCH_CLIENT_ID,
+        Authorization: `Bearer ${token}`,
+      },
+      data: `fields id,name,logo.url,description,country,start_date,url;`,
+    });
+
+    console.log(
+      `IGDB API response received: ${response.data.length} companies`
+    );
+    res.json(response.data);
+  } catch (error) {
+    console.error("Error fetching companies:", error.message);
+    if (error.response) {
+      console.error("Response status:", error.response.status);
+      console.error("Response data:", error.response.data);
+    }
+    res.status(500).json({ error: "Failed to fetch companies from IGDB" });
+  }
+});
+
+//// STEAM ////
 
 // Keep the existing Steam endpoints for backward compatibility
 app.get("/api/steam/app/:appId", async (req, res) => {

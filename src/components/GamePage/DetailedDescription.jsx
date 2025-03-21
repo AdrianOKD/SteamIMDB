@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { FaChevronRight, FaChevronDown } from "react-icons/fa";
 import useGameStore from "../../state/useGameStore";
 import "../../Css/gamepage/DetailedDescription.css";
+import useCompanies from "../hooks/useCompanies";
 
 const DetailedDescription = () => {
   const selectedGame = useGameStore((state) => state.selectedGame);
   const [isExpanded, setIsExpanded] = useState(false);
   const storyline = selectedGame.storyline;
+  const { initialized: companiesInitialized } = useCompanies(); // This initializes the companies cache
 
   if (!storyline || storyline.trim() === "") {
     return <p>No description available</p>;
