@@ -29,6 +29,7 @@ app.use(
   })
 );
 
+
 // Get Twitch access token for IGDB
 async function getTwitchToken() {
   // Only get a new token if we don't have one or it's expired

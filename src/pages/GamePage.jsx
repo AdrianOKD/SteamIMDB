@@ -9,7 +9,6 @@ import Tags from "../components/GamePage/Tags";
 import "/src/Css/gamepage/GameTitle.css";
 import "/src/Css/gamepage/GameContainer.css";
 import "./GamePage.css";
-import DetailedDescription from "../components/GamePage/DetailedDescription";
 import { GamePageButton } from "../components/GamePage/GamePageButton";
 
 export function GamePage() {
@@ -29,16 +28,19 @@ export function GamePage() {
           <GameMedia />
           <div className="right-side-content">
             <div>Header/banner image</div>
-            <div><GameDetailsList selectedGame={selectedGame} /></div>
-            <div>Tags</div>
-            <div>
-             <GamePageButton variant="gamepage" size="small">Add to Wishlist</GamePageButton>
-             <GamePageButton variant="gamepage" size="small">Follow</GamePageButton>
-             </div>
             <div>
               <GameDetailsList selectedGame={selectedGame} />
             </div>
             <Tags />
+            <div>
+              <GamePageButton variant="gamepage" size="small">
+                Add to Wishlist
+              </GamePageButton>
+              <GamePageButton variant="gamepage" size="small">
+                Follow
+              </GamePageButton>
+            </div>
+
             <div>ActionButtons</div>
           </div>
           <div className="game-details">
