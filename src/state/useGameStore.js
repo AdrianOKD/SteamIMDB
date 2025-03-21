@@ -14,7 +14,9 @@ const useGameStore = create(
 
     selectedModalScreenshot: [],
 
-    selectedScreenshots: [],
+    selectedScreenshotsAll: [],
+
+    selectedScreenshotsCurrent: [],
 
     selectedMainScreenshot: null,
 
@@ -35,19 +37,40 @@ const useGameStore = create(
         ),
       }),
 
-      selectGame: (games, id) =>
+      selectGame: (games, id) => 
         set((state) => {
           // First find the game
           const game = games.find((game) => game.id == id);
           
-          // Then return the new state object with both the selected game
-          // and its screenshots processed
+          // Process screenshots if they exist
+          let chunkedScreenshots = [];
+          
+          if (game?.screenshots && game.screenshots.length > 0) {
+            // First transform the URLs as needed
+            const processedScreenshots = game.screenshots.map(screenshot => 
+              screenshot.url.replace("t_thumb", "t_1080p")
+            );
+            
+            // Now chunk them into groups of 6
+            // Option 1: Using a loop
+            for (let i = 0; i < processedScreenshots.length; i += 6) {
+              chunkedScreenshots.push(processedScreenshots.slice(i, i + 6));
+            }
+            
+            // Alternative approach with reduce (more concise but harder to read)
+            // chunkedScreenshots = processedScreenshots.reduce((resultArray, item, index) => {
+            //   const chunkIndex = Math.floor(index / 6);
+            //   if (!resultArray[chunkIndex]) resultArray[chunkIndex] = [];
+            //   resultArray[chunkIndex].push(item);
+            //   return resultArray;
+            // }, []);
+          }
+          
           return {
             selectedGame: game,
-            selectedScreenshots: game?.screenshots?.map(screenshot => 
-              screenshot.url.replace("t_thumb", "t_1080p")
-            ) || [],
-            selectedMainScreenshot: null
+            selectedScreenshotsAll: chunkedScreenshots,
+            selectedScreenshotsCurrent: chunkedScreenshots[0],
+            selectedMainScreenshot: null,
           };
         }),
 

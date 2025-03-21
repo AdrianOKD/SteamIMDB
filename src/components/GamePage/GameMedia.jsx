@@ -4,7 +4,7 @@ import { GameScreenshot } from "./GameScreenshot";
 import useGameStore from "../../state/useGameStore";
 
 function GameMedia() {
-  const screenshots = useGameStore(state => state.selectedScreenshots);
+  const screenshots = useGameStore(state => state.selectedScreenshotsCurrent);
   let mainScreenshot = useGameStore(state => state.selectedMainScreenshot);
   
   if (!screenshots || screenshots.length === 0) {
