@@ -1,32 +1,33 @@
-// useCompanies.js
 import { useEffect } from "react";
 import axios from "axios";
 import useGameStore from "../state/useGameStore";
 
 const useCompanies = () => {
-  const {
-    companiesCacheInitialized,
-    setCompaniesCache,
-    setInvolvedCompaniesCache,
-    setCompaniesInitialized,
-    companiesCache,
-    involvedCompaniesCache,
-  } = useGameStore((state) => ({
-    companiesCacheInitialized: state.companiesCacheInitialized,
-    setCompaniesCache: state.setCompaniesCache,
-    setInvolvedCompaniesCache: state.setInvolvedCompaniesCache,
-    setCompaniesInitialized: state.setCompaniesInitialized,
-    companiesCache: state.companiesCache,
-    involvedCompaniesCache: state.involvedCompaniesCache,
-  }));
+  // Use primitive values rather than selector functions in your state extraction
+  const companiesCacheInitialized = useGameStore(
+    (state) => state.companiesCacheInitialized
+  );
+  const setCompaniesCache = useGameStore((state) => state.setCompaniesCache);
+  const setInvolvedCompaniesCache = useGameStore(
+    (state) => state.setInvolvedCompaniesCache
+  );
+  const setCompaniesInitialized = useGameStore(
+    (state) => state.setCompaniesInitialized
+  );
 
-  // Effect to initialize the company cache
+  // Only access these if needed for the return value
+  const companiesCache = useGameStore((state) => state.companiesCache);
+  const involvedCompaniesCache = useGameStore(
+    (state) => state.involvedCompaniesCache
+  );
+
   useEffect(() => {
-    const initializeCompanies = async () => {
-      if (companiesCacheInitialized) return;
+    // Only run this if we haven't initialized yet
+    if (companiesCacheInitialized) return;
 
+    const initializeCompanies = async () => {
       try {
-        console.log("Initializing companies cache...");
+        console.log("🏢 Initializing companies cache...");
 
         // Fetch involved companies data
         const involvedCompaniesResponse = await axios.get(
@@ -40,21 +41,16 @@ const useCompanies = () => {
         );
         setCompaniesCache(companiesResponse.data);
 
-        console.log("Companies cache initialized successfully!");
+        console.log("🏢 Companies cache initialized successfully!");
         setCompaniesInitialized(true);
       } catch (error) {
-        console.error("Error initializing companies cache:", error.message);
-        // You might want to add error handling or retry logic here
+        console.error("🏢 Error initializing companies cache:", error.message);
       }
     };
 
     initializeCompanies();
-  }, [
-    companiesCacheInitialized,
-    setCompaniesCache,
-    setInvolvedCompaniesCache,
-    setCompaniesInitialized,
-  ]);
+    // Only include primitive values in this dependency array
+  }, [companiesCacheInitialized]);
 
   return {
     initialized: companiesCacheInitialized,

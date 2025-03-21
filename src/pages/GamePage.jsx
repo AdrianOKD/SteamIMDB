@@ -10,6 +10,7 @@ import "/src/Css/gamepage/GameTitle.css";
 import "/src/Css/gamepage/GameContainer.css";
 import "./GamePage.css";
 import { GamePageButton } from "../components/GamePage/GamePageButton";
+import DevPub from "../components/GamePage/DevPub";
 
 export function GamePage() {
   const { id } = useParams();
@@ -46,6 +47,7 @@ export function GamePage() {
           <div className="game-details">
             <GameDescription />
             <DetailedDescription />
+            <DevPub />
             <div>System Requirements</div>
           </div>
           <p>{selectedGame.id}</p>
