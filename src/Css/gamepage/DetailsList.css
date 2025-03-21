@@ -1,26 +1,31 @@
 .detailslist-container {
+      
     display: flex;
     flex-direction: column;
     margin-bottom: 1rem;
     padding-left: 2rem;
     word-spacing: 0.4em;
-    text-align: right;
+    text-align: left;
     background-image: linear-gradient(
-        to right,
+        to left,
         transparent,
         rgb(85, 85, 85) 5%,
         rgb(85, 85, 85) 95%,
         transparent
       ),
       linear-gradient(
-        to right,
+        to left,
         transparent,
         rgb(85, 85, 85) 5%,
         rgb(85, 85, 85) 95%,
         transparent
       );
-      background-position: top right, bottom right;
+      background-position: top left, bottom left;
       background-size: 20% 1px, 20% 1px;
       background-repeat: no-repeat, no-repeat;
 
+}
+.detailslist-container {
+  display: flex; 
+  flex-direction: column;
 }
