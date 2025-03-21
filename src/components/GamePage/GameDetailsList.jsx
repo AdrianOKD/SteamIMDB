@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "../../Css/gamepage/DetailsList.css";
-
+import Tags from "./Tags";
 /**   GameDetailsList Component
  * This component displays a list of the selected games metadata.
  * It extracts and formats information such as developer, publisher,
@@ -106,7 +106,10 @@ export function GameDetailsList({ selectedGame }) {
     return selectedGame.selectedGame.involved_companies[0].company.name;
   }
 
+  
+
   return (
+    <grid className="details-main-container">
     <div className="detailslist-container">
       <span className="detail-developer"> Developer - {developer} </span>
       <span className="detail-publisher"> Publisher - {publisher} </span>
@@ -114,6 +117,8 @@ export function GameDetailsList({ selectedGame }) {
       <span className="detail-rating"> Review - {rating} </span>
       <span className="detail-genre">Genre - {genre} </span>
       <span className="detail-release"> Release Date - {releaseDate} </span>
+      <span> <Tags /> </span>
     </div>
+    </grid>
   );
 }
