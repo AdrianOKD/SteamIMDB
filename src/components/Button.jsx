@@ -22,6 +22,7 @@ export function Button({
     </button>
   );
 }
+
 // Looking at your code snippet and project structure, this is a good question about React component architecture.
 
 // Creating a reusable Button component can actually provide several benefits, even when you need different styling in different places:
