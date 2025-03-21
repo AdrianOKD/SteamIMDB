@@ -1,6 +1,7 @@
 import { useParams } from "react-router";
 import useGameStore from "../state/useGameStore";
 import { useEffect } from "react";
+import GameMedia from "../components/GamePage/GameMedia";
 import { GameDetailsList } from "../components/GamePage/GameDetailsList";
 import { GameDescription } from "../components/GamePage/GameDescription";
 import DetailedDescription from "../components/GamePage/DetailedDescription";
@@ -23,7 +24,7 @@ export function GamePage() {
       <div className="game-page">
         <section className="game-container">
           <h1 className="game-title">{selectedGame.name}</h1>
-          <div>GameMedia</div>
+          <GameMedia />
           <div className="right-side-content">
             <div>Header/banner image</div>
             <div>

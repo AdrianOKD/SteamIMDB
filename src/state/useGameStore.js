@@ -12,6 +12,12 @@ const useGameStore = create(
 
     selectedGameImages: [],
 
+    selectedModalScreenshot: [],
+
+    selectedScreenshots: [],
+
+    selectedMainScreenshot: null,
+
     // Store currently displayed games
     selectedGame: [],
 
@@ -29,16 +35,41 @@ const useGameStore = create(
         ),
       }),
 
-    selectGame: (games, id) =>
-      set({
-        selectedGame: games.find((game) => game.id == id),
-      }),
+      selectGame: (games, id) =>
+        set((state) => {
+          // First find the game
+          const game = games.find((game) => game.id == id);
+          
+          // Then return the new state object with both the selected game
+          // and its screenshots processed
+          return {
+            selectedGame: game,
+            selectedScreenshots: game?.screenshots?.map(screenshot => 
+              screenshot.url.replace("t_thumb", "t_1080p")
+            ) || [],
+            selectedMainScreenshot: null
+          };
+        }),
 
     // Set displayed games (could be a subset of the selected games)
     setDisplayedGames: (games) =>
       set({
         displayedGames: games,
       }),
+
+    selectModalScreenshot: (url) => 
+      set({
+        selectedModalScreenshot: url,
+      }),
+    
+    selectMainScreenshot: (url) =>
+      set({
+        selectedMainScreenshot: url,
+      }),
+    // selectScreenshots: (game) =>
+    //   set({
+    //     selectedScreenshots: game.screenshots.url.map((screenshotUrl) => screenshotUrl.replace("t_thumb", "t_1080p")) 
+    //   }),
 
     // Select a specific number of random games from the selected 100 to display
   }))
