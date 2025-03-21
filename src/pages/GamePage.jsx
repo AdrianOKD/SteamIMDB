@@ -27,21 +27,17 @@ export function GamePage() {
           <h1 className="game-title">{selectedGame.name}</h1>
           <GameMedia />
           <div className="right-side-content">
-            <div>Header/banner image</div>
             <div>
               <GameDetailsList selectedGame={selectedGame} />
             </div>
-            <Tags />
-            <div>
+            <section className="gamepage-buttons-container">
               <GamePageButton variant="gamepage" size="small">
                 Add to Wishlist
               </GamePageButton>
               <GamePageButton variant="gamepage" size="small">
                 Follow
               </GamePageButton>
-            </div>
-
-            <div>ActionButtons</div>
+            </section>
           </div>
           <div className="game-details">
             <GameDescription />
