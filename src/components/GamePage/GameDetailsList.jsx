@@ -78,7 +78,7 @@ export function GameDetailsList({ selectedGame }) {
       !Array.isArray(selectedGame.age_ratings) ||
       selectedGame.age_ratings.length === 0
     ) {
-      return "Unknown";
+      return "Choose something";
     }
     if (typeof selectedGame.age_ratings[0] === "object") {
       const pegi = selectedGame.age_ratings.find(
