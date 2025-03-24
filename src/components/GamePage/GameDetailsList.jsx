@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
-import "../../Css/gamepage/DetailsList.css";
+import useGameStore from "../../state/useGameStore";
 import Tags from "./Tags";
+import "../../Css/gamepage/DetailsList.css";
+
 /**   GameDetailsList Component
  * This component displays a list of the selected games metadata.
  * It extracts and formats information such as developer, publisher,
@@ -11,6 +13,8 @@ import Tags from "./Tags";
  */
 
 export function GameDetailsList({ selectedGame }) {
+  const gameCompanies = useGameStore((state) => state.gameCompanies);
+
   useEffect(() => {
     console.log("Selected Game:", selectedGame);
   }, [selectedGame]);
@@ -18,6 +22,12 @@ export function GameDetailsList({ selectedGame }) {
   if (!selectedGame) {
     return <div className="DetailsList">Loading game details...</div>;
   }
+
+  const gameCompanyInfo = selectedGame.id
+    ? gameCompanies[selectedGame.id]
+    : null;
+  const developers = gameCompanyInfo?.developers || ["n/a"];
+  const publishers = gameCompanyInfo?.publishers || ["n/a"];
 
   const genre = getGenre(selectedGame);
   const rating = getRating(selectedGame);
@@ -84,7 +94,7 @@ export function GameDetailsList({ selectedGame }) {
       );
 
       if (pegi) {
-        const ratingValue =  pegi.rating;
+        const ratingValue = pegi.rating;
 
         if (ratingValue) {
           const pegiAgeMap = {
@@ -94,19 +104,18 @@ export function GameDetailsList({ selectedGame }) {
             4: "16",
             5: "18",
           };
-          
-            return `PEGI ${pegiAgeMap[pegi.rating] || pegi.rating}`;
-          }
+
+          return `PEGI ${pegiAgeMap[pegi.rating] || pegi.rating}`;
         }
       }
     }
-  
+  }
 
   return (
     <div className="details-main-container">
       <div className="detailslist-container">
-        <span className="detail-developer"> Developer -  </span>
-        <span className="detail-publisher"> Publisher -  </span>
+        <span className="detail-developer"> Developer - {developers[0]} </span>
+        <span className="detail-publisher"> Publisher - {publishers[0]} </span>
         <span className="detail-age"> Age Rating - {ageRating} </span>
         <span className="detail-rating"> Review - {rating} </span>
         <span className="detail-genre">Genre - {genre} </span>
