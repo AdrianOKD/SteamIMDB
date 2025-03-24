@@ -78,7 +78,7 @@ export function GameDetailsList({ selectedGame }) {
       !Array.isArray(selectedGame.age_ratings) ||
       selectedGame.age_ratings.length === 0
     ) {
-      return "Choose something";
+      return "PEGI rating not found";
     }
     if (typeof selectedGame.age_ratings[0] === "object") {
       const pegi = selectedGame.age_ratings.find(
@@ -103,38 +103,9 @@ export function GameDetailsList({ selectedGame }) {
       }
     }
   
-  /**
-   * Extracts the publishers name for display.
-   * @param {*} selectedGame
-   * @returns {string} Publishers name or "Unknown" if not available.
-   */
-
-  function getPublisherName(selectedGame) {
-    if (!selectedGame.publisher || selectedGame.publisher.length === 0) {
-      return "Unknown";
-    }
-    return selectedGame.publisher;
-  }
-
-  /**
-   * Extracts the developers name for display.
-   * @param {*} selectedGame
-   * @returns {string} Developer name or "Unknown" if not available
-   */
-
-  function getDeveloperName(selectedGame) {
-    if (
-      !selectedGame.involved_companies ||
-      !Array.isArray(selectedGame.involved_companies) ||
-      selectedGame.involved_companies.length === 0
-    ) {
-      return "Unknown";
-    }
-    return selectedGame.selectedGame.involved_companies[0].company.name;
-  }
 
   return (
-    <grid className="details-main-container">
+    <div className="details-main-container">
       <div className="detailslist-container">
         <span className="detail-developer"> Developer - {developer} </span>
         <span className="detail-publisher"> Publisher - {publisher} </span>
@@ -147,6 +118,6 @@ export function GameDetailsList({ selectedGame }) {
           <Tags />{" "}
         </span>
       </div>
-    </grid>
+    </div>
   );
 }
