@@ -4,9 +4,10 @@ import { GameScreenshot } from "./GameScreenshot";
 import useGameStore from "../../state/useGameStore";
 
 function GameMedia() {
-  const screenshots = useGameStore(state => state.selectedScreenshots);
+  const screenshots = useGameStore(state => state.selectedScreenshotsCurrent);
+  const selectScreenshotsCurrent = useGameStore(state => state.selectScreenshotsCurrent);
   let mainScreenshot = useGameStore(state => state.selectedMainScreenshot);
-  
+  console.log(useGameStore.getState());
   if (!screenshots || screenshots.length === 0) {
     return <div>No screenshots available</div>;
   }
@@ -26,7 +27,14 @@ function GameMedia() {
     useGameStore.getState().selectMainScreenshot(screenshot);
   }
 
+  const rotateCarousel = (index) => {
+    selectScreenshotsCurrent(index);
+  }
+  
+
   return (
+    <div> 
+      <div onClick={() => rotateCarousel(-1)}> left </div>
     <Grid2 className="media-container" container spacing={2}>
       {/* Main screenshot */}
       <GameScreenshot 
@@ -45,6 +53,8 @@ function GameMedia() {
         />
       ))}
     </Grid2>
+    <button onClick={() => rotateCarousel(1)}> right </button>
+    </div>
   );
 }
 
