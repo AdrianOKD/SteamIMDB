@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { createJSONStorage, persist } from "zustand/middleware";
 
 // Create a store to manage game selection
 const useGameStore = create(
@@ -14,9 +14,13 @@ const useGameStore = create(
 
     selectedModalScreenshot: [],
 
-    selectedScreenshots: [],
+    selectedScreenshotsAll: [],
+
+    selectedScreenshotsCurrent: [],
 
     selectedMainScreenshot: null,
+
+    carouselIndex: null,
 
     // Store currently displayed games
     selectedGame: [],
@@ -35,21 +39,43 @@ const useGameStore = create(
         ),
       }),
 
-      selectGame: (games, id) =>
-        set((state) => {
-          // First find the game
-          const game = games.find((game) => game.id == id);
-          
-          // Then return the new state object with both the selected game
-          // and its screenshots processed
-          return {
-            selectedGame: game,
-            selectedScreenshots: game?.screenshots?.map(screenshot => 
-              screenshot.url.replace("t_thumb", "t_1080p")
-            ) || [],
-            selectedMainScreenshot: null
-          };
-        }),
+    selectGame: (games, id) =>
+      set((state) => {
+        // First find the game
+        const game = games.find((game) => game.id == id);
+
+        // Process screenshots if they exist
+        let chunkedScreenshots = [];
+
+        if (game?.screenshots && game.screenshots.length > 0) {
+          // First transform the URLs as needed
+          const processedScreenshots = game.screenshots.map((screenshot) =>
+            screenshot.url.replace("t_thumb", "t_1080p")
+          );
+
+          // Now chunk them into groups of 6
+          // Option 1: Using a loop
+          for (let i = 0; i < processedScreenshots.length; i += 6) {
+            chunkedScreenshots.push(processedScreenshots.slice(i, i + 6));
+          }
+
+          // Alternative approach with reduce (more concise but harder to read)
+          // chunkedScreenshots = processedScreenshots.reduce((resultArray, item, index) => {
+          //   const chunkIndex = Math.floor(index / 6);
+          //   if (!resultArray[chunkIndex]) resultArray[chunkIndex] = [];
+          //   resultArray[chunkIndex].push(item);
+          //   return resultArray;
+          // }, []);
+        }
+
+        return {
+          selectedGame: game,
+          selectedScreenshotsAll: chunkedScreenshots,
+          selectedScreenshotsCurrent: chunkedScreenshots[0],
+          selectedMainScreenshot: null,
+          carouselIndex: 0,
+        };
+      }),
 
     // Set displayed games (could be a subset of the selected games)
     setDisplayedGames: (games) =>
@@ -57,22 +83,46 @@ const useGameStore = create(
         displayedGames: games,
       }),
 
-    selectModalScreenshot: (url) => 
+    selectModalScreenshot: (url) =>
       set({
         selectedModalScreenshot: url,
       }),
-    
+
     selectMainScreenshot: (url) =>
       set({
         selectedMainScreenshot: url,
       }),
+
+    selectScreenshotsCurrent: (index) =>
+      set((state) => {
+        const tempCarouselIndex = state.carouselIndex + index;
+        if (tempCarouselIndex < state.selectedScreenshotsAll.length && tempCarouselIndex >= 0) {
+          return {
+            ...state,
+            carouselIndex: tempCarouselIndex,
+            selectedMainScreenshot: state.selectedScreenshotsAll[tempCarouselIndex][0],
+            selectedScreenshotsCurrent: state.selectedScreenshotsAll[tempCarouselIndex],
+        
+          };
+          
+        }
+        return {
+          ...state,
+        };
+      }),
     // selectScreenshots: (game) =>
     //   set({
-    //     selectedScreenshots: game.screenshots.url.map((screenshotUrl) => screenshotUrl.replace("t_thumb", "t_1080p")) 
+    //     selectedScreenshots: game.screenshots.url.map((screenshotUrl) => screenshotUrl.replace("t_thumb", "t_1080p"))
     //   }),
 
     // Select a specific number of random games from the selected 100 to display
-  }))
+    
+  }),
+  {
+    name: 'game-storage', // name of the item in the storage (must be unique)
+    storage: createJSONStorage(() => sessionStorage), // (optional) by default, 'localStorage' is used
+  },
+)
 );
 
 export default useGameStore;
