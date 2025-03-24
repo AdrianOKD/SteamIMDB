@@ -19,12 +19,10 @@ export function GameDetailsList({ selectedGame }) {
     return <div className="DetailsList">Loading game details...</div>;
   }
 
-  const developer = getDeveloperName(selectedGame);
   const genre = getGenre(selectedGame);
   const rating = getRating(selectedGame);
   const releaseDate = getReleaseDate(selectedGame);
   const ageRating = getAgeRatings(selectedGame);
-  const publisher = getPublisherName(selectedGame);
 
   /**
    *
@@ -107,8 +105,8 @@ export function GameDetailsList({ selectedGame }) {
   return (
     <div className="details-main-container">
       <div className="detailslist-container">
-        <span className="detail-developer"> Developer - {developer} </span>
-        <span className="detail-publisher"> Publisher - {publisher} </span>
+        <span className="detail-developer"> Developer -  </span>
+        <span className="detail-publisher"> Publisher -  </span>
         <span className="detail-age"> Age Rating - {ageRating} </span>
         <span className="detail-rating"> Review - {rating} </span>
         <span className="detail-genre">Genre - {genre} </span>
