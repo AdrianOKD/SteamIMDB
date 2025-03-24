@@ -71,11 +71,38 @@ export function GameDetailsList({ selectedGame }) {
    */
 
   function getAgeRatings(selectedGame) {
-    if (!selectedGame.age_ratings || selectedGame.age_ratings === undefined) {
+    console.log("Age ratings:", selectedGame.age_ratings);
+
+    if (
+      !selectedGame.age_ratings ||
+      !Array.isArray(selectedGame.age_ratings) ||
+      selectedGame.age_ratings.length === 0
+    ) {
       return "Unknown";
     }
-    return selectedGame.age_ratings?.[0];
-  }
+    if (typeof selectedGame.age_ratings[0] === "object") {
+      const pegi = selectedGame.age_ratings.find(
+        (rating) => rating.organization === 2 || rating.category === 2
+      );
+
+      if (pegi) {
+        const ratingValue =  pegi.rating;
+
+        if (ratingValue) {
+          const pegiAgeMap = {
+            1: "3",
+            2: "7",
+            3: "12",
+            4: "16",
+            5: "18",
+          };
+          
+            return `PEGI ${pegiAgeMap[pegi.rating] || pegi.rating}`;
+          }
+        }
+      }
+    }
+  
   /**
    * Extracts the publishers name for display.
    * @param {*} selectedGame
@@ -106,19 +133,20 @@ export function GameDetailsList({ selectedGame }) {
     return selectedGame.selectedGame.involved_companies[0].company.name;
   }
 
-  
-
   return (
     <grid className="details-main-container">
-    <div className="detailslist-container">
-      <span className="detail-developer"> Developer - {developer} </span>
-      <span className="detail-publisher"> Publisher - {publisher} </span>
-      <span className="detail-age"> Age Rating - {ageRating} </span>
-      <span className="detail-rating"> Review - {rating} </span>
-      <span className="detail-genre">Genre - {genre} </span>
-      <span className="detail-release"> Release Date - {releaseDate} </span>
-      <span> <Tags /> </span>
-    </div>
+      <div className="detailslist-container">
+        <span className="detail-developer"> Developer - {developer} </span>
+        <span className="detail-publisher"> Publisher - {publisher} </span>
+        <span className="detail-age"> Age Rating - {ageRating} </span>
+        <span className="detail-rating"> Review - {rating} </span>
+        <span className="detail-genre">Genre - {genre} </span>
+        <span className="detail-release"> Release Date - {releaseDate} </span>
+        <span>
+          {" "}
+          <Tags />{" "}
+        </span>
+      </div>
     </grid>
   );
 }
