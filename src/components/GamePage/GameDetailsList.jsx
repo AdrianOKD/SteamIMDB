@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import useGameStore from "../../state/useGameStore";
 import Tags from "./Tags";
-import "../../Css/gamepage/DetailsList.css";
+import "../../Css/gamepage/GameDetailsList.css";
 
 /**   GameDetailsList Component
  * This component displays a list of the selected games metadata.
@@ -120,9 +120,8 @@ export function GameDetailsList({ selectedGame }) {
         <span className="detail-rating"> Review - {rating} </span>
         <span className="detail-genre">Genre - {genre} </span>
         <span className="detail-release"> Release Date - {releaseDate} </span>
-        <span>
-          {" "}
-          <Tags />{" "}
+        <span className="detailslist-tags-container">
+          <Tags />
         </span>
       </div>
     </div>

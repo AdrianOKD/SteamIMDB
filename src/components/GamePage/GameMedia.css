@@ -1,5 +1,30 @@
 .media-container {
-  max-width: 100%;
-  width: 60rem;
+  max-width: 70%;
+  width: 90rem;
+}
+.button-container {
+  max-width: 70%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
 }
 
+.button-container button {
+  background-color: #1e1c1c;
+  border: 1px solid #141313;
+  border-radius: 50%;
+  padding: 0.75rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.button-container button:hover {
+  background-color: #e0e0e0;
+}
+
+.media-container {
+  margin-bottom: 1rem;
+}

@@ -26,7 +26,6 @@
   flex-direction: column;
   min-width: 250px;
   max-width: 300px;
-  padding-top: 2.5rem;
 }
 .game-info {
   display: flex;
@@ -48,7 +47,7 @@
       transparent
     );
   background-position: top left, bottom left;
-  background-size: 100% 1.5px, 100% 1.5px;
+  background-size: 100% 1px, 100% 1px;
   background-repeat: no-repeat, no-repeat;
   padding-bottom: 1rem;
 }
