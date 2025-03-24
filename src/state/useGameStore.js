@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { createJSONStorage, persist } from "zustand/middleware";
 
 // Create a store to manage game selection
 const useGameStore = create(
@@ -116,7 +116,13 @@ const useGameStore = create(
     //   }),
 
     // Select a specific number of random games from the selected 100 to display
-  }))
+    
+  }),
+  {
+    name: 'game-storage', // name of the item in the storage (must be unique)
+    storage: createJSONStorage(() => sessionStorage), // (optional) by default, 'localStorage' is used
+  },
+)
 );
 
 export default useGameStore;
