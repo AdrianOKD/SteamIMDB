@@ -1,10 +1,8 @@
-// server.js - Updated to include IGDB API alongside Steam
 import express from "express";
 import cors from "cors";
 import axios from "axios";
-import dotenv from "dotenv"; // Add this to handle environment variables
+import dotenv from "dotenv";
 
-// Load environment variables from .env file
 dotenv.config();
 console.log("📣 TWITCH_CLIENT_ID loaded:", !!process.env.TWITCH_CLIENT_ID);
 console.log(
@@ -14,7 +12,6 @@ console.log(
 const app = express();
 const PORT = 3001;
 
-// Twitch/IGDB auth token management
 let twitchToken = null;
 let tokenExpiry = null;
 const TWITCH_CLIENT_ID =
@@ -29,8 +26,13 @@ app.use(
   })
 );
 
-
-// Get Twitch access token for IGDB
+/**
+ * Retrieves or refreshes the Twitch API access token
+ *
+ * @async
+ * @returns {Promise<string>} A valid Twitch access token
+ * @throws {Error} If authentication with Twitch fails
+ */
 async function getTwitchToken() {
   // Only get a new token if we don't have one or it's expired
   if (!twitchToken || Date.now() > tokenExpiry) {
@@ -64,17 +66,16 @@ async function getTwitchToken() {
   return twitchToken;
 }
 
-// IGDB Games endpoint - get games with images
+// IGDB Games endpoint
 app.get("/api/games", async (req, res) => {
   console.log("📣 Request received for /api/games");
   try {
     const limit = req.query.limit || 100;
 
-    // Get valid access token
     const token = await getTwitchToken();
 
     console.log("📣 Making request to IGDB API...");
-    // Make request to IGDB API
+
     const response = await axios({
       url: "https://api.igdb.com/v4/games",
       method: "POST",
@@ -82,10 +83,9 @@ app.get("/api/games", async (req, res) => {
         "Client-ID": TWITCH_CLIENT_ID,
         Authorization: `Bearer ${token}`,
       },
-      // This query gets games with covers, limits results, and sorts by popularity
-      data: `fields name,cover.url,summary,storyline,rating,first_release_date,genres.name,platforms.name,screenshots.url,age_ratings.*,themes.name,keywords.name,game_modes.name; 
+      data: `fields name,cover.url,summary,storyline,rating,first_release_date,genres.name,platforms.name,screenshots.url,age_ratings.*,themes.name,keywords.name,game_modes.name,involved_companies; 
       limit ${limit}; 
-      where cover != null & category = 0 & storyline != null & rating_count > 1000; 
+      where cover != null & category = 0 & storyline != null & rating_count > 1000;
       sort rating desc;`,
     });
 
@@ -114,7 +114,7 @@ app.get("/api/games/:id", async (req, res) => {
         "Client-ID": TWITCH_CLIENT_ID,
         Authorization: `Bearer ${token}`,
       },
-      data: `fields name,cover.url,summary,storyline,rating,first_release_date,genres.name,platforms.name,screenshots.url,videos.video_id,similar_games.name,similar_games.cover.url,age_ratings.*;
+      data: `fields name,cover.url,summary,storyline,rating,first_release_date,genres.name,platforms.name,screenshots.url,videos.video_id,similar_games.name,similar_games.cover.url;
              where id = ${id};`,
     });
 
@@ -126,6 +126,114 @@ app.get("/api/games/:id", async (req, res) => {
   } catch (error) {
     console.error("Error fetching IGDB game details:", error);
     res.status(500).json({ error: "Failed to fetch game details" });
+  }
+});
+
+/**
+ * Fetches involved companies data from IGDB API with support for batched requests
+ *
+ * @async
+ * @param {express.Request} req - Express request object
+ * @param {express.Response} res - Express response object
+ * @returns {Promise<void>}
+ */
+app.get("/api/involved-companies", async (req, res) => {
+  console.log("📣 Request received for /api/involved-companies");
+  try {
+    const ids = req.query.ids;
+    if (!ids) {
+      return res.status(400).json({ error: "No IDs provided" });
+    }
+
+    const token = await getTwitchToken();
+
+    const idArray = ids.split(",");
+    const batchSize = 10;
+    const batches = [];
+
+    for (let i = 0; i < idArray.length; i += batchSize) {
+      batches.push(idArray.slice(i, i + batchSize));
+    }
+
+    const allResults = [];
+
+    for (const batch of batches) {
+      const response = await axios({
+        url: "https://api.igdb.com/v4/involved_companies",
+        method: "POST",
+        headers: {
+          "Client-ID": TWITCH_CLIENT_ID,
+          Authorization: `Bearer ${token}`,
+        },
+        data: `fields id,company,developer,publisher,game;
+              where id = (${batch.join(",")});`,
+      });
+
+      allResults.push(...response.data);
+    }
+
+    console.log(
+      `📣 IGDB API response received: ${allResults.length} involved companies`
+    );
+    res.json(allResults);
+  } catch (error) {
+    console.error("📣 Error fetching involved companies:", error.message);
+    res
+      .status(500)
+      .json({ error: "Failed to fetch involved companies from IGDB" });
+  }
+});
+
+/**
+ * Fetches company data from IGDB API with support for batched requests
+ *
+ * @async
+ * @param {express.Request} req - Express request object
+ * @param {express.Response} res - Express response object
+ * @returns {Promise<void>}
+ */
+app.get("/api/companies", async (req, res) => {
+  console.log("📣 Request received for /api/companies");
+  try {
+    const ids = req.query.ids;
+    if (!ids) {
+      return res.status(400).json({ error: "No IDs provided" });
+    }
+
+    const token = await getTwitchToken();
+
+    const idArray = ids.split(",");
+    const batchSize = 10;
+    const batches = [];
+
+    for (let i = 0; i < idArray.length; i += batchSize) {
+      batches.push(idArray.slice(i, i + batchSize));
+    }
+
+    const allResults = [];
+
+    for (const batch of batches) {
+      const response = await axios({
+        url: "https://api.igdb.com/v4/companies",
+        method: "POST",
+        headers: {
+          "Client-ID": TWITCH_CLIENT_ID,
+          Authorization: `Bearer ${token}`,
+        },
+        data: `fields id,name,logo.url,description;
+              where id = (${batch.join(",")});`,
+      });
+
+      allResults.push(...response.data);
+    }
+
+    console.log(
+      `📣 IGDB API response received: ${allResults.length} companies`
+    );
+    res.json(allResults);
+  } catch (error) {
+    console.error("📣 Error fetching companies:", error.message);
+    res.status(500).json({ error: "Failed to fetch companies from IGDB" });
   }
 });
 
@@ -171,7 +279,12 @@ app.get("/api/steam/apps", async (req, res) => {
   }
 });
 
-// Add a simple test endpoint
+/**
+ * Simple test endpoint to verify the server is running correctly
+ *
+ * @param {express.Request} req - Express request object
+ * @param {express.Response} res - Express response object
+ */
 app.get("/api/test", (req, res) => {
   res.json({ message: "Proxy server is working correctly!" });
 });
@@ -180,75 +293,3 @@ app.listen(PORT, () => {
   console.log(`Proxy server running on http://localhost:${PORT}`);
   console.log(`Configured to accept requests from http://localhost:5173`);
 });
-
-/* OLD VERSION
-
-// server.js - Updated to accept requests from port 5173
-import express from "express";
-import cors from "cors";
-import axios from "axios";
-
-const app = express();
-const PORT = 3001;
-
-// Configure CORS to specifically allow your React app on port 5173
-app.use(
-  cors({
-    origin: "http://localhost:5173", // This matches your actual React app URL
-    credentials: true,
-  })
-);
-
-// Steam API proxy endpoint
-app.get("/api/steam/app/:appId", async (req, res) => {
-  try {
-    const { appId } = req.params;
-    const response = await axios.get(
-      `https://store.steampowered.com/api/appdetails?appids=${appId}`
-    );
-    res.json(response.data);
-  } catch (error) {
-    console.error("Error proxying Steam API:", error);
-    res.status(500).json({ error: "Failed to fetch data from Steam API" });
-  }
-});
-
-app.get("/api/steam/apps", async (req, res) => {
-  console.log("📣 Request received for /api/steam/apps");
-  try {
-    console.log("📣 Making request to Steam API...");
-    const response = await axios.get(
-      "https://api.steampowered.com/ISteamApps/GetAppList/v2/"
-    );
-    console.log("📣 Steam API response received:", {
-      status: response.status,
-      dataReceived: !!response.data,
-    });
-    res.json(response.data);
-  } catch (error) {
-    console.error("📣 Error proxying Steam API:", error);
-    console.error("📣 Error details:", {
-      message: error.message,
-      code: error.code,
-      response: error.response
-        ? {
-            status: error.response.status,
-            data: error.response.data,
-          }
-        : "No response",
-    });
-    res.status(500).json({ error: "Failed to fetch data from Steam API" });
-  }
-});
-
-// Add a simple test endpoint
-app.get("/api/test", (req, res) => {
-  res.json({ message: "Proxy server is working correctly!" });
-});
-
-app.listen(PORT, () => {
-  console.log(`Proxy server running on http://localhost:${PORT}`);
-  console.log(`Configured to accept requests from http://localhost:5173`);
-});
-
-*/
