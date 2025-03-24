@@ -33,3 +33,21 @@
     padding: 12px 24px;
     font-size: 1.2rem;
 }
+
+.button.follow {
+    color: white;
+}
+
+.button.gamepage {
+    background-color: rgb(77, 82, 86);
+    color: rgb(238, 232, 232);
+    
+
+    
+
+}
+.gamepage-buttons-container{
+    display: flex;
+    gap: 10px;
+    padding-left: 2rem ;
+}

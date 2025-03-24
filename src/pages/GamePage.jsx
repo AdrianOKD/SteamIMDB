@@ -9,6 +9,7 @@ import Tags from "../components/GamePage/Tags";
 import "/src/Css/gamepage/GameTitle.css";
 import "/src/Css/gamepage/GameContainer.css";
 import "./GamePage.css";
+import { GamePageButton } from "../components/GamePage/GamePageButton";
 
 export function GamePage() {
   const { id } = useParams();
@@ -26,12 +27,17 @@ export function GamePage() {
           <h1 className="game-title">{selectedGame.name}</h1>
           <GameMedia />
           <div className="right-side-content">
-            <div>Header/banner image</div>
             <div>
               <GameDetailsList selectedGame={selectedGame} />
             </div>
-            <Tags />
-            <div>ActionButtons</div>
+            <section className="gamepage-buttons-container">
+              <GamePageButton variant="gamepage" size="small">
+                Add to Wishlist
+              </GamePageButton>
+              <GamePageButton variant="gamepage" size="small">
+                Follow
+              </GamePageButton>
+            </section>
           </div>
           <div className="game-details">
             <GameDescription />
