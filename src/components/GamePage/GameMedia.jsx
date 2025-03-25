@@ -44,9 +44,8 @@ function GameMedia() {
         />
 
         {/* Rest of the screenshots */}
-        {screenshots.map((screenshot, index) => (
+        {screenshots.map((screenshot) => (
           <GameScreenshot
-            key={index}
             variant="small"
             src={screenshot}
             onClick={() => swapMainScreenshot(screenshot)}
