@@ -4,8 +4,23 @@ import logo from "/src/components/assets/company-logo.png";
 import { GameCard } from "./GameCard";
 import "/src/Css/gamegrid/GameGrid.css";
 
+/**
+ * @typedef {Object} Game
+ * @property {string} id - Unique identifier for the game
+ * @property {string} [imageUrl] - Optional URL to the game's image
+ */
+
+/**
+ * @module GameGrid
+ * @description Component Displays a responsive grid of game cards fetched from the game store.
+ * The grid adapts to different screen sizes with appropriate spacing and column counts.
+ *
+ * @returns {JSX.Element} A grid containing GameCard components
+ */
 export function GameGrid() {
+  /** @type {Game[]} - Array of games from the global state */
   const games = useGameStore((state) => state.allGames);
+
   return (
     <div className="gg-div" width="70%" flex={1}>
       <Grid2
