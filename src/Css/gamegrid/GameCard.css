@@ -1,6 +1,19 @@
 .game-card {
-  /* border-top: solid 1px rgb(36, 35, 35);
-  border-left: solid 1px rgb(36, 35, 35); */
   overflow: hidden;
-  border-radius: 0.2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(30, 30, 30, 0.7);
+  padding: 8px;
+}
+
+.game-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 12px rgba(255, 255, 255, 0.3);
+}
+
+.game-card img {
+  border-radius: 0.3rem;
+  display: block;
 }
