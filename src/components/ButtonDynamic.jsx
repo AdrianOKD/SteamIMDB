@@ -6,7 +6,7 @@ import "/src/Css/buttons/Button.css";
 //     </>
 //   );
 // }
-export function Button({
+export function ButtonDynamic({
   children,
   className,
   variant = "default",
