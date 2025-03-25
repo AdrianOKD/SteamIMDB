@@ -11,8 +11,6 @@ const useGameStore = create(
       // Store randomly selected game IDs (100 games)
       selectedGameIds: [],
 
-      selectedModalScreenshot: [],
-
       selectedScreenshotsAll: [],
 
       selectedScreenshotsCurrent: [],
@@ -24,7 +22,7 @@ const useGameStore = create(
       gameCompanies: {},
 
       // Store currently displayed games
-      selectedGame: null,
+      selectedGame: [],
 
       /**
        * Updates the store with games from the API.
@@ -77,26 +75,6 @@ const useGameStore = create(
             selectedMainScreenshot: null,
             carouselIndex: 0,
           };
-        }),
-
-      /**
-       * Updates the store
-       *
-       *
-       */
-      // Set displayed games (could be a subset of the selected games)
-      setDisplayedGames: (games) =>
-        set({
-          displayedGames: games,
-        }),
-      /**
-       * Updates the store
-       *
-       *
-       */
-      selectModalScreenshot: (url) =>
-        set({
-          selectedModalScreenshot: url,
         }),
 
       /**
