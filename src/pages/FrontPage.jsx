@@ -1,4 +1,4 @@
-import { GameGrid } from "../components/FrontPage/GameGrid";
+import { GameGrid } from "../components/frontpage/GameGrid";
 import "/src/Css/frontpage/FrontPage.css"
 
 export function FrontPage() {
