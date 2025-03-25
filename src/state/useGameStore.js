@@ -88,7 +88,7 @@ const useGameStore = create(
 
       /**
        * Updates the store with the currently selected screenshots.
-       *  @param {number} index - The index of the selected array of screenshots.
+       *  @param {number} index - Index for selecting current array of screenshots.
        */
       selectScreenshotsCurrent: (index) =>
         set((state) => {

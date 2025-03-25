@@ -4,6 +4,12 @@ import { GameScreenshot } from "./GameScreenshot";
 import useGameStore from "../../state/useGameStore";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 
+/**
+ * Displays game screenshots with navigation and interaction
+ *
+ * @component
+ * @returns {JSX.Element} Game media gallery component
+ */
 function GameMedia() {
   const screenshots = useGameStore((state) => state.selectedScreenshotsCurrent);
   const selectScreenshotsCurrent = useGameStore(
@@ -19,10 +25,21 @@ function GameMedia() {
     mainScreenshot = screenshots[0];
   }
 
+  /**
+   * Updates the main screenshot in the store
+   *
+   * @param {string} screenshot - URL of the screenshot to set as main
+   */
   const swapMainScreenshot = (screenshot) => {
     useGameStore.getState().selectMainScreenshot(screenshot);
   };
 
+
+   /**
+   * Rotates the screenshot carousel
+   * 
+   * @param {number} index - Index for selecting current array of screenshots.
+   */
   const rotateCarousel = (index) => {
     selectScreenshotsCurrent(index);
   };
@@ -31,10 +48,7 @@ function GameMedia() {
     <div>
       <Grid2 className="media-container" container spacing={2}>
         {/* Main screenshot */}
-        <GameScreenshot
-          variant="large"
-          src={mainScreenshot}
-        />
+        <GameScreenshot variant="large" src={mainScreenshot} />
 
         {/* Rest of the screenshots */}
         {screenshots.map((screenshot) => (
@@ -46,8 +60,13 @@ function GameMedia() {
         ))}
       </Grid2>
       <div className="button-container">
-        <button onClick={() => rotateCarousel(-1)}> <SlArrowLeft /> </button>
-        <button onClick={() => rotateCarousel(1)}><SlArrowRight /></button>
+        <button onClick={() => rotateCarousel(-1)}>
+          {" "}
+          <SlArrowLeft />{" "}
+        </button>
+        <button onClick={() => rotateCarousel(1)}>
+          <SlArrowRight />
+        </button>
       </div>
     </div>
   );
