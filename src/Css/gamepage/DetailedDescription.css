@@ -1,6 +1,7 @@
-.storyline-container.gameystoryline {
+.storyline-container {
   margin-bottom: 1rem;
-  padding-left: 2rem;
+  padding-left: 11rem;
+  padding-right: 11rem;
   text-align: left;
 }
 
