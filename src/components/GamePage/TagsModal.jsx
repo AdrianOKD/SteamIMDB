@@ -2,6 +2,14 @@ import useGameStore from "../../state/useGameStore";
 import "../../Css/gamepage/Tags.css";
 import { IoClose } from "react-icons/io5";
 
+/**
+ * Modal component that displays all tags associated with a game.
+ * Shows themes, game modes, and keywords in separate sections when available.
+ *
+ * @param {Object} props - Component props
+ * @param {Function} props.onClose - Function to call when the modal should close
+ * @returns {JSX.Element} The modal component with all game tags
+ */
 const TagsModal = ({ onClose }) => {
   const selectedGame = useGameStore((state) => state.selectedGame);
   const themes = selectedGame.themes || [];
@@ -17,7 +25,6 @@ const TagsModal = ({ onClose }) => {
             <IoClose />
           </button>
         </div>
-
         <div className="modal-body">
           {themes.length > 0 && (
             <div className="tag-section">
@@ -31,7 +38,6 @@ const TagsModal = ({ onClose }) => {
               </div>
             </div>
           )}
-
           {gameModes.length > 0 && (
             <div className="tag-section">
               <h4>Game Modes</h4>
@@ -44,7 +50,6 @@ const TagsModal = ({ onClose }) => {
               </div>
             </div>
           )}
-
           {keywords.length > 0 && (
             <div className="tag-section">
               <h4>Keywords</h4>
