@@ -5,6 +5,16 @@ import { UserLinks } from "./UserLinks";
 import { ButtonDynamic } from "../ButtonDynamic";
 import "/src/Css/navbar/NavBar.css";
 
+/**
+ * Renders a navbar that displays links, a searchbar and a button.
+ * Its divided in three sections
+ * - Left-side: Logo and navigation links to new page.
+ * - Middle: searchbar
+ * - Right-side: user-links and a watchlist button.  
+ * 
+ * @returns {jsx.Element} A react component that displays the whole navigation bar.
+ */
+
 export function NavBar() {
   return (
     <>
