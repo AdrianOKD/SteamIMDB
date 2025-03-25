@@ -15,26 +15,25 @@ const PORT = 3001;
 let twitchToken = null;
 let tokenExpiry = null;
 const TWITCH_CLIENT_ID =
-  process.env.TWITCH_CLIENT_ID || process.env.VITE_TWITCH_CLIENT_ID;
+  process.env.TWITCH_CLIENT_ID;
 const TWITCH_CLIENT_SECRET =
-  process.env.TWITCH_CLIENT_SECRET || process.env.VITE_TWITCH_CLIENT_SECRET;
-// Configure CORS to specifically allow your React app on port 5173
+  process.env.TWITCH_CLIENT_SECRET;
+
 app.use(
   cors({
-    origin: "http://localhost:5173", // This matches your actual React app URL
+    origin: "http://localhost:5173", 
     credentials: true,
   })
 );
 
 /**
  * Retrieves or refreshes the Twitch API access token
- *
+ * Only get a new token if we don't have one or it's expired
  * @async
  * @returns {Promise<string>} A valid Twitch access token
  * @throws {Error} If authentication with Twitch fails
  */
 async function getTwitchToken() {
-  // Only get a new token if we don't have one or it's expired
   if (!twitchToken || Date.now() > tokenExpiry) {
     console.log("📣 Getting new Twitch access token...");
     try {
@@ -52,7 +51,7 @@ async function getTwitchToken() {
 
       twitchToken = response.data.access_token;
       // Set expiry time (token lasts 60 days but we'll refresh after 50)
-      tokenExpiry = Date.now() + 50 * 24 * 60 * 60 * 1000;
+      tokenExpiry = Date.now() + 50 * 24 * 60 * 60 * 1000; 
       console.log("📣 New Twitch token obtained successfully");
     } catch (error) {
       console.error("📣 Error getting Twitch token:", error.message);
@@ -101,33 +100,6 @@ app.get("/api/games", async (req, res) => {
   }
 });
 
-// IGDB Game details endpoint
-app.get("/api/games/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
-    const token = await getTwitchToken();
-
-    const response = await axios({
-      url: "https://api.igdb.com/v4/games",
-      method: "POST",
-      headers: {
-        "Client-ID": TWITCH_CLIENT_ID,
-        Authorization: `Bearer ${token}`,
-      },
-      data: `fields name,cover.url,summary,storyline,rating,first_release_date,genres.name,platforms.name,screenshots.url,videos.video_id,similar_games.name,similar_games.cover.url;
-             where id = ${id};`,
-    });
-
-    if (response.data && response.data.length > 0) {
-      res.json(response.data[0]);
-    } else {
-      res.status(404).json({ error: "Game not found" });
-    }
-  } catch (error) {
-    console.error("Error fetching IGDB game details:", error);
-    res.status(500).json({ error: "Failed to fetch game details" });
-  }
-});
 
 /**
  * Fetches involved companies data from IGDB API with support for batched requests
@@ -201,7 +173,6 @@ app.get("/api/companies", async (req, res) => {
     }
 
     const token = await getTwitchToken();
-
     const idArray = ids.split(",");
     const batchSize = 10;
     const batches = [];
@@ -226,7 +197,6 @@ app.get("/api/companies", async (req, res) => {
 
       allResults.push(...response.data);
     }
-
     console.log(
       `📣 IGDB API response received: ${allResults.length} companies`
     );
@@ -234,48 +204,6 @@ app.get("/api/companies", async (req, res) => {
   } catch (error) {
     console.error("📣 Error fetching companies:", error.message);
     res.status(500).json({ error: "Failed to fetch companies from IGDB" });
-  }
-});
-
-// Keep the existing Steam endpoints for backward compatibility
-app.get("/api/steam/app/:appId", async (req, res) => {
-  try {
-    const { appId } = req.params;
-    const response = await axios.get(
-      `https://store.steampowered.com/api/appdetails?appids=${appId}`
-    );
-    res.json(response.data);
-  } catch (error) {
-    console.error("Error proxying Steam API:", error);
-    res.status(500).json({ error: "Failed to fetch data from Steam API" });
-  }
-});
-
-app.get("/api/steam/apps", async (req, res) => {
-  console.log("📣 Request received for /api/steam/apps");
-  try {
-    console.log("📣 Making request to Steam API...");
-    const response = await axios.get(
-      "https://api.steampowered.com/ISteamApps/GetAppList/v2/"
-    );
-    console.log("📣 Steam API response received:", {
-      status: response.status,
-      dataReceived: !!response.data,
-    });
-    res.json(response.data);
-  } catch (error) {
-    console.error("📣 Error proxying Steam API:", error);
-    console.error("📣 Error details:", {
-      message: error.message,
-      code: error.code,
-      response: error.response
-        ? {
-            status: error.response.status,
-            data: error.response.data,
-          }
-        : "No response",
-    });
-    res.status(500).json({ error: "Failed to fetch data from Steam API" });
   }
 });
 

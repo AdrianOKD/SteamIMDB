@@ -1,5 +1,5 @@
 import { Grid2 } from "@mui/material";
-import "/src/Css/gamegrid/GameCard.css";
+import "/src/Css/frontpage/GameCard.css";
 import { convertImageSize } from "../../utils/imageUtils";
 import { Link } from "react-router";
 /**

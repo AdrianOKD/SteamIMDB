@@ -1,9 +1,7 @@
 import "./App.css";
-import SteamAppDetails from "./components/SteamAppDetails.jsx";
 import { Link, Outlet, Route, Routes } from "react-router";
-import { Hero } from "./components/Hero.jsx";
 import { NavLinks } from "./components/NavBar/NavLinks.jsx";
-import { Footer } from "./components/Footer/Footer.jsx";
+import { Footer } from "./components/Footer.jsx";
 import { FrontPage } from "./pages/FrontPage.jsx";
 import { GamePage } from "./pages/GamePage.jsx";
 import { NavBar } from "./components/NavBar/NavBar.jsx";

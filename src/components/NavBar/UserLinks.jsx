@@ -4,7 +4,7 @@ import { Link } from "react-router";
 /**
  * Renders a  user-related navigation link component with customizable styling. 
  * @param {object} props 
- *  @param {any} [props.children="Links to new user page"] - The content displayed inside the link example: "homepage", falls back on "Links to new page" if not provided.
+ * @param {any} [props.children="Links to new user page"] - The content displayed inside the link example: "homepage", falls back on "Links to new  user page" if not provided.
  * @param {string} [props.className] - Optional string for unique classNames for each link using this component.
  * @param {string} [props.variant="default"]  - Add standard "variant" css style for link that can be changed for each unique link.
  * @param {string} [props.size="medium"] - Add standard "size" css style for link that can be changed for each unique link. Eg. ("small", "medium", "large" etc.).

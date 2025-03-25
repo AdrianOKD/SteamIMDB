@@ -1,4 +1,4 @@
-import "./GameScreenshot.css";
+import "/src/Css/gamepage/GameScreenshot.css";
 import { Grid2 } from "@mui/material";
 
 

@@ -3,7 +3,6 @@ import "/src/Css/gamepage/GameDescription.css";
 import useGameStore from "../../state/useGameStore";
 
 /**
- * @typedef {Object} Game
  * @property {string} [summary] - The summary/description text of the game
  * @property {number} [id] - Unique identifier for the game
  */
@@ -14,7 +13,6 @@ import useGameStore from "../../state/useGameStore";
  * @returns {JSX.Element} A section containing the game description or a default message
  */
 export function GameDescription() {
-  /** @type {Game|null} The currently selected game from the game store */
   const selectedGame = useGameStore((state) => state.selectedGame);
 
   return (
