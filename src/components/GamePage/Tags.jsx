@@ -11,8 +11,6 @@ const Tags = () => {
   const keywords = selectedGame.keywords || [];
   const gameModes = selectedGame.game_modes || [];
 
-  console.log("Themes array:", themes);
-  console.log("Themes length:", themes.length);
   if (!themes || themes.length === 0) {
     return null;
   }
