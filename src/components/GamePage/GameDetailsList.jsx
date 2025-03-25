@@ -75,7 +75,7 @@ export function GameDetailsList({ selectedGame }) {
   /**
    * Extracts the age rating information
    * @param {*} selectedGame
-   * @returns {string} Age rating or "Unknown".
+   * @returns {string} Age rating or fallback message.
    */
 
   function getAgeRatings(selectedGame) {
@@ -109,6 +109,7 @@ export function GameDetailsList({ selectedGame }) {
         }
       }
     }
+    return "Pegi rating not found"
   }
 
   return (
