@@ -1,6 +1,7 @@
 .media-container {
   max-width: 70%;
   width: 90rem;
+  
 }
 .button-container {
   max-width: 70%;
@@ -26,5 +27,6 @@
 }
 
 .media-container {
+  
   margin-bottom: 1rem;
 }
