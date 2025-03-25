@@ -78,9 +78,8 @@ const useGameStore = create(
         }),
 
       /**
-       * Updates the store
-       *
-       *
+       * Updates the store with the currently selected main screenshot.
+       * @param {string} url - The url of the selected screenshot.
        */
       selectMainScreenshot: (url) =>
         set({
@@ -88,9 +87,8 @@ const useGameStore = create(
         }),
 
       /**
-       * Updates the store
-       *
-       *
+       * Updates the store with the currently selected screenshots.
+       *  @param {number} index - The index of the selected array of screenshots.
        */
       selectScreenshotsCurrent: (index) =>
         set((state) => {
@@ -112,10 +110,6 @@ const useGameStore = create(
             ...state,
           };
         }),
-      // selectScreenshots: (game) =>
-      //   set({
-      //     selectedScreenshots: game.screenshots.url.map((screenshotUrl) => screenshotUrl.replace("t_thumb", "t_1080p"))
-      //   }),
 
       /**
        * Updates the store with developer and publisher information for games
