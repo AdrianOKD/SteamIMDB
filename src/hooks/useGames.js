@@ -35,7 +35,7 @@ const useGames = (limit = 100) => {
 
         // Assuming your backend returns the shaped data directly
         const fetchedGames = response.data;
-
+        
         setGames(fetchedGames);
         setAllGames(fetchedGames);
 

@@ -15,11 +15,13 @@ export function GamePage() {
   const { id } = useParams();
   const games = useGameStore((state) => state.allGames);
   const selectGame = useGameStore((state) => state.selectGame);
+  
   useEffect(() => {
     selectGame(games, id);
     console.log("Selected Game:", selectedGame);
   }, [id, games, selectGame]);
   const selectedGame = useGameStore((state) => state.selectedGame);
+  
   return (
     <>
       <div className="game-page">

@@ -11,10 +11,6 @@ const useGameStore = create(
       // Store randomly selected game IDs (100 games)
       selectedGameIds: [],
 
-      selectedGameImages: [],
-
-      selectedModalScreenshot: [],
-
       selectedScreenshotsAll: [],
 
       selectedScreenshotsCurrent: [],
@@ -28,20 +24,21 @@ const useGameStore = create(
       // Store currently displayed games
       selectedGame: [],
 
-      // Set all available games from API
+      /**
+       * Updates the store with games from the API.
+       * @param {Array} games - Array of game objects with properties like id, name, etc.
+       */
       setAllGames: (games) =>
         set({
           // Extract just the IDs or use the full game objects as needed
           allGames: games.map((game) => game),
         }),
 
-      selectGameImages: (games) =>
-        set({
-          selectedGameImages: games.map((game) =>
-            game.cover.url.replace("t_thumb", "t_cover_big")
-          ),
-        }),
-
+      /**
+       * Updates the store with a specific game based on the id parameter.
+       * @param {Array} games - Array of game objects with properties like id, name, etc.
+       * @param {string} id - The unique id of the selected game.
+       */
       selectGame: (games, id) =>
         set((state) => {
           // First find the game
@@ -80,22 +77,19 @@ const useGameStore = create(
           };
         }),
 
-      // Set displayed games (could be a subset of the selected games)
-      setDisplayedGames: (games) =>
-        set({
-          displayedGames: games,
-        }),
-
-      selectModalScreenshot: (url) =>
-        set({
-          selectedModalScreenshot: url,
-        }),
-
+      /**
+       * Updates the store with the currently selected main screenshot.
+       * @param {string} url - The url of the selected screenshot.
+       */
       selectMainScreenshot: (url) =>
         set({
           selectedMainScreenshot: url,
         }),
 
+      /**
+       * Updates the store with the currently selected screenshots.
+       *  @param {number} index - Index for selecting current array of screenshots.
+       */
       selectScreenshotsCurrent: (index) =>
         set((state) => {
           const tempCarouselIndex = state.carouselIndex + index;
@@ -116,10 +110,6 @@ const useGameStore = create(
             ...state,
           };
         }),
-      // selectScreenshots: (game) =>
-      //   set({
-      //     selectedScreenshots: game.screenshots.url.map((screenshotUrl) => screenshotUrl.replace("t_thumb", "t_1080p"))
-      //   }),
 
       /**
        * Updates the store with developer and publisher information for games
@@ -135,7 +125,7 @@ const useGameStore = create(
     }),
     {
       name: "game-storage", // name of the item in the storage (must be unique)
-      storage: createJSONStorage(() => sessionStorage), // (optional) by default, 'localStorage' is used
+      storage: createJSONStorage(() => sessionStorage),
     }
   )
 );
