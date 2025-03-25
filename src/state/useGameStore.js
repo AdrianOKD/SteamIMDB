@@ -26,25 +26,21 @@ const useGameStore = create(
       // Store currently displayed games
       selectedGame: null,
 
-      // Set with all available games from API
-
-        /**
-         * Updates the store
-         * 
-         * 
-         */
+      /**
+       * Updates the store with games from the API.
+       * @param {Array} games - Array of game objects with properties like id, name, etc.
+       */
       setAllGames: (games) =>
         set({
           // Extract just the IDs or use the full game objects as needed
           allGames: games.map((game) => game),
         }),
 
-          /**
-         * Updates the store
-         * 
-         * 
-         */
-
+      /**
+       * Updates the store with a specific game based on the id parameter.
+       * @param {Array} games - Array of game objects with properties like id, name, etc.
+       * @param {string} id - The unique id of the selected game.
+       */
       selectGame: (games, id) =>
         set((state) => {
           // First find the game
@@ -83,41 +79,41 @@ const useGameStore = create(
           };
         }),
 
-          /**
-         * Updates the store
-         * 
-         * 
-         */
+      /**
+       * Updates the store
+       *
+       *
+       */
       // Set displayed games (could be a subset of the selected games)
       setDisplayedGames: (games) =>
         set({
           displayedGames: games,
         }),
-        /**
-         * Updates the store
-         * 
-         * 
-         */
+      /**
+       * Updates the store
+       *
+       *
+       */
       selectModalScreenshot: (url) =>
         set({
           selectedModalScreenshot: url,
         }),
 
-          /**
-         * Updates the store
-         * 
-         * 
-         */
+      /**
+       * Updates the store
+       *
+       *
+       */
       selectMainScreenshot: (url) =>
         set({
           selectedMainScreenshot: url,
         }),
 
-          /**
-         * Updates the store
-         * 
-         * 
-         */
+      /**
+       * Updates the store
+       *
+       *
+       */
       selectScreenshotsCurrent: (index) =>
         set((state) => {
           const tempCarouselIndex = state.carouselIndex + index;
@@ -157,7 +153,7 @@ const useGameStore = create(
     }),
     {
       name: "game-storage", // name of the item in the storage (must be unique)
-      storage: createJSONStorage(() => sessionStorage), 
+      storage: createJSONStorage(() => sessionStorage),
     }
   )
 );
