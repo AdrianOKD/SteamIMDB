@@ -11,8 +11,6 @@ const useGameStore = create(
       // Store randomly selected game IDs (100 games)
       selectedGameIds: [],
 
-      selectedGameImages: [],
-
       selectedModalScreenshot: [],
 
       selectedScreenshotsAll: [],
@@ -26,21 +24,26 @@ const useGameStore = create(
       gameCompanies: {},
 
       // Store currently displayed games
-      selectedGame: [],
+      selectedGame: null,
 
-      // Set all available games from API
+      // Set with all available games from API
+
+        /**
+         * Updates the store
+         * 
+         * 
+         */
       setAllGames: (games) =>
         set({
           // Extract just the IDs or use the full game objects as needed
           allGames: games.map((game) => game),
         }),
 
-      selectGameImages: (games) =>
-        set({
-          selectedGameImages: games.map((game) =>
-            game.cover.url.replace("t_thumb", "t_cover_big")
-          ),
-        }),
+          /**
+         * Updates the store
+         * 
+         * 
+         */
 
       selectGame: (games, id) =>
         set((state) => {
@@ -80,22 +83,41 @@ const useGameStore = create(
           };
         }),
 
+          /**
+         * Updates the store
+         * 
+         * 
+         */
       // Set displayed games (could be a subset of the selected games)
       setDisplayedGames: (games) =>
         set({
           displayedGames: games,
         }),
-
+        /**
+         * Updates the store
+         * 
+         * 
+         */
       selectModalScreenshot: (url) =>
         set({
           selectedModalScreenshot: url,
         }),
 
+          /**
+         * Updates the store
+         * 
+         * 
+         */
       selectMainScreenshot: (url) =>
         set({
           selectedMainScreenshot: url,
         }),
 
+          /**
+         * Updates the store
+         * 
+         * 
+         */
       selectScreenshotsCurrent: (index) =>
         set((state) => {
           const tempCarouselIndex = state.carouselIndex + index;
@@ -135,7 +157,7 @@ const useGameStore = create(
     }),
     {
       name: "game-storage", // name of the item in the storage (must be unique)
-      storage: createJSONStorage(() => sessionStorage), // (optional) by default, 'localStorage' is used
+      storage: createJSONStorage(() => sessionStorage), 
     }
   )
 );
