@@ -19,12 +19,6 @@ function GameMedia() {
     mainScreenshot = screenshots[0];
   }
 
-  // Support for Modal/Pop-up screenshot, should we implement?
-  const openScreenshotModal = (src) => {
-    useGameStore.getState().selectModalScreenshot(src);
-    alert("modal goes here");
-  };
-
   const swapMainScreenshot = (screenshot) => {
     useGameStore.getState().selectMainScreenshot(screenshot);
   };
@@ -40,7 +34,6 @@ function GameMedia() {
         <GameScreenshot
           variant="large"
           src={mainScreenshot}
-          onClick={() => openScreenshotModal(mainScreenshot)}
         />
 
         {/* Rest of the screenshots */}
