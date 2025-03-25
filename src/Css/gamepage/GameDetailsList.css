@@ -1,0 +1,12 @@
+
+.detailslist-container {
+  display: flex; 
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.detailslist-tags-container{
+  margin-top: 10rem;
+  margin-bottom: 3.7rem;
+}

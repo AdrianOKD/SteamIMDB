@@ -24,20 +24,26 @@ export function GamePage() {
     <>
       <div className="game-page">
         <section className="game-container">
-          <h1 className="game-title">{selectedGame.name}</h1>
-          <GameMedia />
-          <div className="right-side-content">
-            <div>
+        <h1 className="game-title">{selectedGame.name}</h1>
+          <div className="content-wrapper">
+            <div className="left-side-content">
+            
+            <div className="game-info">
               <GameDetailsList selectedGame={selectedGame} />
+              </div>
+              <section className="gamepage-buttons-container">
+                <GamePageButton variant="gamepage" size="small">
+                  Add to Wishlist
+                </GamePageButton>
+                <GamePageButton variant="gamepage" size="small">
+                  Follow
+                </GamePageButton>
+              </section>
             </div>
-            <section className="gamepage-buttons-container">
-              <GamePageButton variant="gamepage" size="small">
-                Add to Wishlist
-              </GamePageButton>
-              <GamePageButton variant="gamepage" size="small">
-                Follow
-              </GamePageButton>
-            </section>
+            
+            <div className="game-media">
+              <GameMedia />
+            </div>
           </div>
           <div className="game-details">
             <GameDescription />
