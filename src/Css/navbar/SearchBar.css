@@ -1,7 +1,17 @@
 #search-input {
-    border-radius: 1rem;
-    border: solid 1px rgb(160, 160, 160);
-    width: 70%;
-    padding: 0.2rem;
-    padding-left: 1rem;
+  border-radius: 1rem;
+  border: solid 1px rgb(160, 160, 160);
+  width: 70%;
+  padding: 0.2rem;
+  padding-left: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+#search-input:hover {
+  border: solid 1px rgb(209, 206, 206);
+}
+
+#search-input:focus {
+  outline: none;
+  border: solid 1px rgb(209, 206, 206);
 }

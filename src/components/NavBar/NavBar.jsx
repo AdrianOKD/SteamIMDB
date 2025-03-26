@@ -10,8 +10,8 @@ import "/src/Css/navbar/NavBar.css";
  * Its divided in three sections
  * - Left-side: Logo and navigation links to new page.
  * - Middle: searchbar
- * - Right-side: user-links and a watchlist button.  
- * 
+ * - Right-side: user-links and a watchlist button.
+ *
  * @returns {jsx.Element} A react component that displays the whole navigation bar.
  */
 
@@ -26,7 +26,7 @@ export function NavBar() {
               Store
             </NavLinks>
             <NavLinks to="/LinkPage" variant="default" size="medium">
-              News stand
+              News
             </NavLinks>
             <NavLinks to="/LinkPage" variant="default" size="medium">
               Community

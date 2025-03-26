@@ -1,0 +1,17 @@
+.link-page {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  height: 30rem;
+  width: 80rem;
+  align-items: center;
+  background-color: rgba(87, 76, 76, 0.205);
+  box-shadow: 0 0 1.1rem rgba(102, 149, 187, 0.5);
+  border-radius: 1.4rem;
+}
+
+#link-page-title {
+  font-size: 38px;
+  font-weight: bold;
+}
