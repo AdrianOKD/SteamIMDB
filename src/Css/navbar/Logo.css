@@ -1,6 +1,7 @@
 #logo {
-  width: 5rem;
+  width: 12rem;
   padding-right: 2rem;
+  padding-top: 0.3rem;
   height: fit-content;
   transition: all 0.3s ease;
 }
