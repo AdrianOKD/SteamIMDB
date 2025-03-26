@@ -7,14 +7,14 @@
  * @returns {string|null} The converted image URL, original URL if format not found, or null if invalid input
  *
  * @example
- * // Convert from thumbnail to big cover
- * convertImageSize("https://images.igdb.com/igdb/image/upload/t_thumb/co1wyy.jpg");
- * // Returns: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1wyy.jpg"
+ *  Convert from thumbnail to big cover
+ *  convertImageSize("https://images.igdb.com/igdb/image/upload/t_thumb/co1wyy.jpg");
+ *  Returns: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1wyy.jpg"
  *
  * @example
- * // Convert from small cover to screenshot huge
- * convertImageSize("https://images.igdb.com/igdb/image/upload/t_cover_small/co1wyy.jpg", "t_cover_small", "t_screenshot_huge");
- * // Returns: "https://images.igdb.com/igdb/image/upload/t_screenshot_huge/co1wyy.jpg"
+ *  Convert from small cover to screenshot huge
+ *  convertImageSize("https://images.igdb.com/igdb/image/upload/t_cover_small/co1wyy.jpg", "t_cover_small", "t_screenshot_huge");
+ *  Returns: "https://images.igdb.com/igdb/image/upload/t_screenshot_huge/co1wyy.jpg"
  */
 
 export function convertImageSize(
@@ -31,13 +31,3 @@ export function convertImageSize(
   }
   return imageUrl.replace(fromSize, toSize);
 }
-
-/*
-  IGDB Image Sizes
-  t_thumb
-  t_cover_small
-  t_cover_big
-  t_screenshot_med
-  t_screenshot_big
-  t_screenshot_huge
-  */

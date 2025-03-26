@@ -3,13 +3,12 @@ import useGameStore from "../state/useGameStore";
 import { useEffect } from "react";
 import GameMedia from "../components/GamePage/GameMedia";
 import { GameDetailsList } from "../components/GamePage/GameDetailsList";
-import { GameDescription } from "../components/GamePage/GameDescription";
-import DetailedDescription from "../components/GamePage/DetailedDescription";
-import Tags from "../components/GamePage/Tags";
+import { GameDescription } from "../components/gamepage/GameDescription";
+import { ButtonDynamic } from "../components/ButtonDynamic";
+import DetailedDescription from "../components/gamepage/DetailedDescription";
 import "/src/Css/gamepage/GameTitle.css";
 import "/src/Css/gamepage/GameContainer.css";
-import "./GamePage.css";
-import { GamePageButton } from "../components/GamePage/GamePageButton";
+import "/src/Css/gamepage/GamePage.css";
 
 export function GamePage() {
   const { id } = useParams();
@@ -34,12 +33,12 @@ export function GamePage() {
               <GameDetailsList selectedGame={selectedGame} />
               </div>
               <section className="gamepage-buttons-container">
-                <GamePageButton variant="gamepage" size="small">
+                <ButtonDynamic variant="gamepage" size="small">
                   Add to Wishlist
-                </GamePageButton>
-                <GamePageButton variant="gamepage" size="small">
+                </ButtonDynamic>
+                <ButtonDynamic variant="gamepage" size="small">
                   Follow
-                </GamePageButton>
+                </ButtonDynamic>
               </section>
             </div>
             

@@ -58,12 +58,12 @@ export function GameDetailsList({ selectedGame }) {
     }
     return Math.round(selectedGame.rating * 100) / 100;
   }
+
   /**
    * Converts the timestamp to a readable date format
    * @param {*} selectedGame
    * @returns {string}  returns a formatted date from selected game or "Unknown" if not found.
    */
-
   function getReleaseDate(selectedGame) {
     if (!selectedGame.first_release_date) {
       return "Unknown";
@@ -72,12 +72,12 @@ export function GameDetailsList({ selectedGame }) {
       selectedGame.first_release_date * 1000
     ).toLocaleDateString();
   }
+
   /**
    * Extracts the age rating information
    * @param {*} selectedGame
    * @returns {string} Age rating or fallback message.
    */
-
   function getAgeRatings(selectedGame) {
     console.log("Age ratings:", selectedGame.age_ratings);
 
@@ -109,7 +109,7 @@ export function GameDetailsList({ selectedGame }) {
         }
       }
     }
-    return "Pegi rating not found"
+    return "Pegi rating not found";
   }
 
   return (

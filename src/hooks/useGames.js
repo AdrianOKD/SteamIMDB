@@ -28,18 +28,15 @@ const useGames = (limit = 100) => {
         console.log("Starting IGDB API request...");
         setLoading(true);
 
-        // This would call your backend endpoint that handles IGDB authentication
         const response = await axios.get(
           `http://localhost:3001/api/games?limit=${limit}`
         );
 
-        // Assuming your backend returns the shaped data directly
         const fetchedGames = response.data;
         
         setGames(fetchedGames);
         setAllGames(fetchedGames);
 
-        // Initialize gameCompanies outside the conditional block
         let gameCompanies = {};
 
         const allInvolvedCompanyIds = fetchedGames.flatMap((game) =>

@@ -1,11 +1,11 @@
 import { Grid2 } from "@mui/material";
-import "./GameMedia.css";
+import "/src/Css/gamepage/GameMedia.css";
 import { GameScreenshot } from "./GameScreenshot";
 import useGameStore from "../../state/useGameStore";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 
 /**
- * Displays game screenshots with navigation and interaction
+ * Renders a grid containing game screenshots with navigation and interaction
  *
  * @component
  * @returns {JSX.Element} Game media gallery component
@@ -34,10 +34,9 @@ function GameMedia() {
     useGameStore.getState().selectMainScreenshot(screenshot);
   };
 
-
-   /**
+  /**
    * Rotates the screenshot carousel
-   * 
+   *
    * @param {number} index - Index for selecting current array of screenshots.
    */
   const rotateCarousel = (index) => {

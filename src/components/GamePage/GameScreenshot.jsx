@@ -1,4 +1,4 @@
-import "./GameScreenshot.css";
+import "/src/Css/gamepage/GameScreenshot.css";
 import { Grid2 } from "@mui/material";
 
 
@@ -23,8 +23,8 @@ export function GameScreenshot({ variant = "medium", ...props }) {
   }[actualVariant];
 
   return (
-    <Grid2 size={gridSize} className={`screenshot ${actualVariant}`} {...props}>
-      <img className="screenshot" src={props.src} />
+    <Grid2 size={gridSize} className={`screenshot-container ${actualVariant}`} {...props}>
+      <img className={`screenshot ${actualVariant}`} src={props.src} />
     </Grid2>
   );
 }

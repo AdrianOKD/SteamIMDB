@@ -1,23 +1,18 @@
-import "./App.css";
-import SteamAppDetails from "./components/SteamAppDetails.jsx";
-import { Link, Outlet, Route, Routes } from "react-router";
-import { Hero } from "./components/Hero.jsx";
-import { NavLinks } from "./components/NavBar/NavLinks.jsx";
-import { Footer } from "./components/Footer/Footer.jsx";
+import "/src/Css/App.css";
+import { Outlet, Route, Routes } from "react-router";
+import { Footer } from "./components/Footer.jsx";
 import { FrontPage } from "./pages/FrontPage.jsx";
 import { GamePage } from "./pages/GamePage.jsx";
 import { NavBar } from "./components/NavBar/NavBar.jsx";
 import { LinkPage } from "./pages/LinkPage.jsx";
 import { UserPage } from "./pages/UserPage.jsx";
 import useGameStore from "./state/useGameStore.js";
-import { useEffect } from "react";
 import useGames from "./hooks/useGames";
-// import { useParams } from "react-router";
 
 /**
  * The main application component. 
  * It handles the routing and game data initialization. 
- * Fetches gamedata via useGames hook and managaes the game selections thorugh useGameStore.
+ * Fetches gamedata via useGames hook and managaes the game selections through useGameStore.
  * It sets up the applications routes for FrontPage, GamePage, LinkPage and UserPage. With the possibility for additional routes.
  * 
  * @component
