@@ -14,14 +14,12 @@ const PORT = 3001;
 
 let twitchToken = null;
 let tokenExpiry = null;
-const TWITCH_CLIENT_ID =
-  process.env.TWITCH_CLIENT_ID;
-const TWITCH_CLIENT_SECRET =
-  process.env.TWITCH_CLIENT_SECRET;
+const TWITCH_CLIENT_ID = process.env.TWITCH_CLIENT_ID;
+const TWITCH_CLIENT_SECRET = process.env.TWITCH_CLIENT_SECRET;
 
 app.use(
   cors({
-    origin: "http://localhost:5173", 
+    origin: "http://localhost:5173",
     credentials: true,
   })
 );
@@ -51,7 +49,7 @@ async function getTwitchToken() {
 
       twitchToken = response.data.access_token;
       // Set expiry time (token lasts 60 days but we'll refresh after 50)
-      tokenExpiry = Date.now() + 50 * 24 * 60 * 60 * 1000; 
+      tokenExpiry = Date.now() + 50 * 24 * 60 * 60 * 1000;
       console.log("📣 New Twitch token obtained successfully");
     } catch (error) {
       console.error("📣 Error getting Twitch token:", error.message);
@@ -99,7 +97,6 @@ app.get("/api/games", async (req, res) => {
     res.status(500).json({ error: "Failed to fetch games from IGDB" });
   }
 });
-
 
 /**
  * Fetches involved companies data from IGDB API with support for batched requests
