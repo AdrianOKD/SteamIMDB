@@ -3,16 +3,7 @@
   justify-content: center;
   margin-top: 3rem;
 }
-.game-container {
-  display: flex;
-  flex-direction: column;
-  width: 90%;
-  max-width: 1500px;
-  background-color: rgba(40, 40, 40, 0.7);
-  box-shadow: 0 0 1.1rem rgba(102, 149, 187, 0.5);
-  border-radius: 0.5rem;
-  padding: 2rem;
-}
+
 
 .content-wrapper {
   display: flex;
@@ -38,14 +29,8 @@
       rgb(85, 85, 85) 5%,
       rgb(85, 85, 85) 95%,
       transparent
-    ),
-    linear-gradient(
-      to left,
-      transparent,
-      rgb(85, 85, 85) 5%,
-      rgb(85, 85, 85) 95%,
-      transparent
     );
+  
   background-position: top left, bottom left;
   background-size: 100% 1px, 100% 1px;
   background-repeat: no-repeat, no-repeat;

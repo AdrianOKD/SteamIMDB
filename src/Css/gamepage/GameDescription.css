@@ -2,11 +2,14 @@
   display: flex;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  min-height: 12rem;
-  width: 70rem;
+  min-height: 6rem;
+  width: 65rem;
   text-align: left;
-  margin: 0 auto;
+  margin-left:  17rem;
+
+ 
   color: white;
+  
   background-image: linear-gradient(
       to right,
       transparent,

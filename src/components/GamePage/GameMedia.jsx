@@ -44,12 +44,21 @@ function GameMedia() {
   };
 
   return (
-    <div>
+    <>
+    
+   
       <Grid2 className="media-container" container spacing={2}>
+        
         {/* Main screenshot */}
         <GameScreenshot variant="large" src={mainScreenshot} />
 
         {/* Rest of the screenshots */}
+        <Grid2 className="button-carousel-1" size={1} >
+        <button onClick={() => rotateCarousel(-1)}>
+          {" "}
+          <SlArrowLeft />{" "}
+        </button>
+        </Grid2>
         {screenshots.map((screenshot) => (
           <GameScreenshot
             variant="small"
@@ -57,17 +66,14 @@ function GameMedia() {
             onClick={() => swapMainScreenshot(screenshot)}
           />
         ))}
-      </Grid2>
-      <div className="button-container">
-        <button onClick={() => rotateCarousel(-1)}>
-          {" "}
-          <SlArrowLeft />{" "}
-        </button>
-        <button onClick={() => rotateCarousel(1)}>
+        <Grid2 className="button-carousel-2" size={1} >
+         <button onClick={() => rotateCarousel(1)}>
           <SlArrowRight />
         </button>
-      </div>
-    </div>
+        </Grid2>
+      </Grid2>
+     
+    </>
   );
 }
 
