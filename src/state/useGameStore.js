@@ -40,8 +40,8 @@ const useGameStore = create(
               screenshot.url.replace("t_thumb", "t_1080p")
             );
 
-            for (let i = 0; i < processedScreenshots.length; i += 6) {
-              chunkedScreenshots.push(processedScreenshots.slice(i, i + 6));
+            for (let i = 0; i < processedScreenshots.length; i += 5) {
+              chunkedScreenshots.push(processedScreenshots.slice(i, i + 5));
             }
           }
 
