@@ -44,7 +44,7 @@ export function NavBar() {
                 Sign in
               </UserLinks>
             </div>
-            <ButtonDynamic variant="watchlist" size="small">
+            <ButtonDynamic variant="wishlist" size="small">
               Watchlist
             </ButtonDynamic>
           </div>
