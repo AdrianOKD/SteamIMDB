@@ -3,16 +3,6 @@
   justify-content: center;
   margin-top: 3rem;
 }
-.game-container {
-  display: flex;
-  flex-direction: column;
-  width: 90%;
-  max-width: 1500px;
-  background-color: rgba(40, 40, 40, 0.7);
-  box-shadow: 0 0 1.1rem rgba(102, 149, 187, 0.5);
-  border-radius: 0.5rem;
-  padding: 2rem;
-}
 
 .content-wrapper {
   display: flex;
@@ -57,8 +47,6 @@
   flex-direction: column;
   gap: 1rem;
 }
-
-
 
 .game-media {
   flex: 2;
