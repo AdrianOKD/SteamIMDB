@@ -23,19 +23,13 @@
   gap: 1rem;
   width: 100%;
   background-image: linear-gradient(
-      to left,
-      transparent,
-      rgb(85, 85, 85) 5%,
-      rgb(85, 85, 85) 95%,
-      transparent
-    ),
-    linear-gradient(
-      to left,
-      transparent,
-      rgb(85, 85, 85) 5%,
-      rgb(85, 85, 85) 95%,
-      transparent
-    );
+    to left,
+    transparent,
+    rgb(85, 85, 85) 5%,
+    rgb(85, 85, 85) 95%,
+    transparent
+  );
+
   background-position: top left, bottom left;
   background-size: 100% 1px, 100% 1px;
   background-repeat: no-repeat, no-repeat;
